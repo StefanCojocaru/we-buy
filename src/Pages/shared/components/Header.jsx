@@ -14,7 +14,7 @@ import logo from '../../../logo/logo.png'
 
 import { Link } from 'react-router-dom'
 
-const Header = () => {
+const Header = ({ user }) => {
   const [searchValue, setSearchValue] = useState('')
 
   const handleSearch = () => {
@@ -53,12 +53,12 @@ const Header = () => {
             <SearchIcon sx={{ color: '#1B1B1B' }} />
           </IconButton>
         </Stack>
-        <Link to="/myaccount">
+        <Link to={user ? '/myaccount' : '/myaccount/signin'}>
           <Button
             startDecorator={<PersonIcon />}
             sx={{ backgroundColor: '#1B1B1B' }}
           >
-            My Account
+            {user ? 'My Account' : 'Sign In'}
           </Button>
         </Link>
         <Button

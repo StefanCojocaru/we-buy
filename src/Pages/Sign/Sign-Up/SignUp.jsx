@@ -68,13 +68,14 @@ export default function SignUp() {
         })
           .then(() => {
             console.log('User created with display name:', user.displayName)
+            navigate('/')
           })
           .catch((error) => {
             console.log('Error updating user profile:', error.message)
           })
 
         console.log(user)
-        navigate('/')
+
         // ...
       })
       .catch((error) => {

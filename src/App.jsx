@@ -54,7 +54,7 @@ const App = () => {
             element={<ProductsWithCategory />}
           />
         </Route>
-        <Route path="/myaccount" element={<SecondaryLayout />}>
+        <Route path="/myaccount" element={<SecondaryLayout user={authUser} />}>
           <Route index element={<MyAccount user={authUser} />} />
           <Route path="signin" element={<SignIn />} />
           <Route path="signup" element={<SignUp />} />

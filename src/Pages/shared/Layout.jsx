@@ -9,7 +9,7 @@ const Layout = ({ user }) => {
   return (
     <>
       <nav>
-        <Header />
+        <Header user={user} />
         <AuxHeader />
         {/* <Products /> */}
         <div>Hello {user}</div>

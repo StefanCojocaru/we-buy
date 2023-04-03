@@ -1,9 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { auth } from '../../database/firebase'
 
 import SignIn from '../Sign/Sign-In/SignIn'
 import SignUp from '../Sign/Sign-Up/SignUp'
+
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
+import Divider from '@mui/material/Divider'
+import ListItemButton from '@mui/material/ListItemButton'
+import Box from '@mui/material/Box'
+
+import MyOrders from './MyOrders'
+
+const style = {
+  width: '100%',
+  maxWidth: 120,
+  bgcolor: 'background.paper',
+}
 
 const MyAccount = ({ user }) => {
   const navigate = useNavigate()
@@ -18,6 +33,14 @@ const MyAccount = ({ user }) => {
       .catch((error) => {
         console.log('error signing out')
       })
+  }
+
+  const [selectedItem, setSelectedItem] = useState(null)
+  const handleMyOrders = () => {
+    setSelectedItem('myOrders')
+  }
+  const handleSell = () => {
+    setSelectedItem('sellProduct')
   }
 
   return (
@@ -35,9 +58,45 @@ const MyAccount = ({ user }) => {
 
     <>
       <div>
-        <div>Hello {user}, you're logged in</div>
-        <button onClick={handleSignOut}>Sign Out</button>
+        <h2>Welcome {user}</h2>
       </div>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <List sx={style} component="nav" aria-label="mailbox folders">
+          <ListItemButton onClick={handleMyOrders}>
+            <ListItemText primary="My Orders" />
+          </ListItemButton>
+          <Divider />
+          <ListItemButton divider onClick={handleSell}>
+            <ListItemText primary="Sell" />
+          </ListItemButton>
+          <ListItemButton>
+            <ListItemText primary="TBA" />
+          </ListItemButton>
+          <Divider light />
+          <ListItemButton>
+            <ListItemText primary="TBA" />
+          </ListItemButton>
+          <Divider light />
+          <ListItemButton>
+            <ListItemText primary="TBA" />
+          </ListItemButton>
+          <Divider light />
+          <ListItemButton onClick={handleSignOut}>
+            <ListItemText primary="Sign Out" />
+          </ListItemButton>
+        </List>
+
+        {selectedItem === 'myOrders' && (
+          <Box sx={{ backgroundColor: 'lightblue', width: '90%' }}>
+            <MyOrders />
+          </Box>
+        )}
+        {selectedItem === 'sellProduct' && (
+          <Box sx={{ backgroundColor: 'lightblue', width: '90%' }}>
+            <h3>Selling Form</h3>
+          </Box>
+        )}
+      </Box>
     </>
   )
 }

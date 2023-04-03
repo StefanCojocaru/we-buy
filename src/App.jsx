@@ -10,8 +10,10 @@ import {
 
 import Home from './Pages/Home/Home.jsx'
 import Layout from './Pages/shared/Layout.jsx'
-import Products from './Pages/Product-Page/Products.jsx'
+import ProductsList from './Pages/Product-Page/ProductsList.jsx'
 import MyAccount from './Pages/My-Account/MyAccount.jsx'
+import Favorites from './Pages/Favorites/Favorites.jsx'
+import Cart from './Pages/Cart/Cart.jsx'
 
 import './style/style.css'
 
@@ -59,13 +61,19 @@ const App = () => {
           <Route path="signin" element={<SignIn />} />
           <Route path="signup" element={<SignUp />} />
         </Route>
+        <Route path="/favorites" element={<SecondaryLayout user={authUser} />}>
+          <Route index element={<Favorites user={authUser} />} />
+        </Route>
+        <Route path="/cart" element={<SecondaryLayout user={authUser} />}>
+          <Route index element={<Cart user={authUser} />} />
+        </Route>
       </Routes>
     </div>
   )
 }
 const ProductsWithCategory = () => {
   const { category } = useParams()
-  return <Products category={category} />
+  return <ProductsList category={category} />
 }
 
 export default App

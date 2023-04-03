@@ -63,6 +63,7 @@ export default function SignUp() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user
+
         updateProfile(user, {
           displayName: `${firstName} ${lastName}`,
         })

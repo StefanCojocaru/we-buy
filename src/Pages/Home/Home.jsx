@@ -1,11 +1,13 @@
 import React from 'react'
+import Products from '../Product-Page/Products'
 
 const Home = () => {
   return (
     <div>
       {/* <Header />
       <AuxHeader /> */}
-      Home Page
+      <h2>All products</h2>
+      <Products random={true} />
     </div>
   )
 }

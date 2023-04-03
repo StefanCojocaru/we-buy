@@ -61,18 +61,22 @@ const Header = ({ user }) => {
             {user ? 'My Account' : 'Sign In'}
           </Button>
         </Link>
-        <Button
-          startDecorator={<FavoriteIcon />}
-          sx={{ backgroundColor: '#1B1B1B' }}
-        >
-          Favorites
-        </Button>
-        <Button
-          startDecorator={<ShoppingCartIcon />}
-          sx={{ backgroundColor: '#1B1B1B' }}
-        >
-          Cart
-        </Button>
+        <Link to={user ? '/favorites' : '/myaccount/signin'}>
+          <Button
+            startDecorator={<FavoriteIcon />}
+            sx={{ backgroundColor: '#1B1B1B' }}
+          >
+            Favorites
+          </Button>
+        </Link>
+        <Link to={user ? '/cart' : '/myaccount/signin'}>
+          <Button
+            startDecorator={<ShoppingCartIcon />}
+            sx={{ backgroundColor: '#1B1B1B' }}
+          >
+            Cart
+          </Button>
+        </Link>
       </Stack>
     </div>
   )

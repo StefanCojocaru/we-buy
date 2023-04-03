@@ -11,7 +11,7 @@ import db from '../../database/firebase'
 
 import { ref, onValue, child, get } from 'firebase/database'
 
-const Products = ({ category }) => {
+const Products = ({ category, random }) => {
   const [data, setData] = useState([]) // initialize empty array
 
   useEffect(() => {

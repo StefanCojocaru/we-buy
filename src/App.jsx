@@ -10,7 +10,7 @@ import {
 
 import Home from './Pages/Home/Home.jsx'
 import Layout from './Pages/shared/Layout.jsx'
-import ProductsList from './Pages/Product-Page/ProductsList.jsx'
+import Products from './Pages/Product-Page/Products.jsx'
 import MyAccount from './Pages/My-Account/MyAccount.jsx'
 import Favorites from './Pages/Favorites/Favorites.jsx'
 import Cart from './Pages/Cart/Cart.jsx'
@@ -73,7 +73,7 @@ const App = () => {
 }
 const ProductsWithCategory = () => {
   const { category } = useParams()
-  return <ProductsList category={category} />
+  return <Products category={category} />
 }
 
 export default App

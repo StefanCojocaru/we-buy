@@ -5,6 +5,8 @@ import ListItem from '@mui/joy/ListItem'
 import Typography from '@mui/joy/Typography'
 import Box from '@mui/joy/Box'
 
+import Products from '../Product-Page/Products'
+
 const Favorites = () => {
   return (
     <Box textAlign="center" marginTop="2rem">
@@ -18,9 +20,11 @@ const Favorites = () => {
       </Typography>
       <Box display="inline-block">
         <List aria-labelledby="basic-list-demo">
-          <ListItem>1 red onion</ListItem>
-          <ListItem>2 red peppers</ListItem>
-          <ListItem>120g bacon</ListItem>
+          <ListItem>
+            <Products category="laptops" />
+          </ListItem>
+          <ListItem></ListItem>
+          <ListItem></ListItem>
         </List>
       </Box>
     </Box>

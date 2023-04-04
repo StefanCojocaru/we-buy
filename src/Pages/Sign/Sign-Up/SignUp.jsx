@@ -17,7 +17,10 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../../database/firebase'
+import db from '../../../database/firebase'
 import { updateProfile } from 'firebase/auth'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { getDatabase, ref, set, update } from 'firebase/database'
 
 function Copyright(props) {
   return (
@@ -69,6 +72,25 @@ export default function SignUp() {
         })
           .then(() => {
             console.log('User created with display name:', user.displayName)
+
+            onAuthStateChanged(auth, (user) => {
+              if (user) {
+                const usersRef = ref(db, 'users/' + user.uid)
+                set(usersRef, {
+                  favorites: true,
+                  cart: true,
+                })
+                  .then(() => {
+                    console.log(`User ${user.uid} added to 'users' node`)
+                  })
+                  .catch((error) => {
+                    console.error(
+                      `Error adding user ${user.uid} to 'users' node: ${error}`
+                    )
+                  })
+              }
+            })
+
             navigate('/')
           })
           .catch((error) => {

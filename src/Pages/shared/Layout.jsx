@@ -11,8 +11,6 @@ const Layout = ({ user }) => {
       <nav>
         <Header user={user} />
         <AuxHeader />
-        {/* <Products /> */}
-        <div>Hello {user}</div>
       </nav>
       <Outlet />
     </>

@@ -1,0 +1,370 @@
+{
+  "audio-video": {
+    "av-1": {
+      "category": "Audio-Video",
+      "description": "A compact smart speaker with built-in Amazon Alexa and Google Assistant, and high-quality audio performance.",
+      "id": "av-1",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Fsonos_one.jpg?alt=media&token=7c481dbc-0a55-489d-a931-197b492f432e",
+      "price": 199,
+      "title": "Sonos One (Gen 2) - Voice Controlled Smart Speaker"
+    },
+    "av-2": {
+      "category": "Audio-Video",
+      "description": "A rugged and waterproof portable speaker with powerful bass and up to 15 hours of playtime.",
+      "id": "av-2",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2FExtreme2_Hero_Black-1605x1605px.webp?alt=media&token=05585a03-eeb5-4c00-a0db-54d45ac014cf",
+      "price": 349.95,
+      "title": "JBL Xtreme 2 Waterproof Portable Bluetooth Speaker"
+    },
+    "av-3": {
+      "category": "Audio-Video",
+      "description": "Noise-cancelling headphones with Alexa voice control, up to 20 hours of battery life, and a comfortable over-ear design.",
+      "id": "av-3",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Fbose.webp?alt=media&token=77be9787-a4b5-458c-9389-7027b69bdfd4",
+      "price": 299,
+      "title": "Bose QuietComfort 35 II Wireless Bluetooth Headphones"
+    }
+  },
+  "books": {
+    "books-1": {
+      "author": "J.R.R. Tolkien",
+      "category": "Books",
+      "description": "A fantasy novel set in the fictional world of Middle-earth, following hobbit Frodo Baggins as he and the Fellowship embark on a quest to destroy the One Ring.",
+      "id": "books-1",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2FThe_Lord_of_the_Rings_First_Copies.webp?alt=media&token=015413a1-4584-41b7-a60d-039a74065513",
+      "price": 19.99,
+      "title": "The Lord of the Rings"
+    },
+    "books-2": {
+      "author": "Harper Lee",
+      "category": "Books",
+      "description": "A novel set in the American South during the Great Depression, exploring themes of racism, injustice, and loss of innocence.",
+      "id": "books-2",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2F1200px-To_Kill_a_Mockingbird_(first_edition_cover).jpg?alt=media&token=5103efb1-d714-4af9-a672-04614a5be340",
+      "price": 9.99,
+      "title": "To Kill a Mockingbird"
+    },
+    "books-3": {
+      "author": "George Orwell",
+      "category": "Books",
+      "description": "A dystopian novel set in a totalitarian society, following protagonist Winston Smith as he rebels against the oppressive regime.",
+      "id": "books-3",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2F1984-george-orwell-cover-print-179850_1200x1200.webp?alt=media&token=7b0e951a-7293-41af-b4b2-9f80dc009ec4",
+      "price": 12.99,
+      "title": "1984"
+    }
+  },
+  "gaming": {
+    "gaming-1": {
+      "brand": "Sony",
+      "category": "Gaming",
+      "description": "Sony gaming console with 825GB SSD, AMD Zen 2 processor, and Ray Tracing.",
+      "id": "gaming-1",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2FConsola-PlayStation-5-PS5-Screenshot-02.webp?alt=media&token=d9f6302b-e6f2-4e1a-b1da-5700e6c6d0eb",
+      "model": "PlayStation 5",
+      "name": "PlayStation 5",
+      "price": 499.99,
+      "processor": "AMD Zen 2",
+      "ram": 16,
+      "storage": 825
+    },
+    "gaming-2": {
+      "brand": "Microsoft",
+      "category": "Gaming",
+      "description": "Microsoft gaming console with 1TB SSD, AMD Zen 2 processor, and Ray Tracing.",
+      "id": "gaming-2",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2FConsola-Xbox-Series-X-Coperta.webp?alt=media&token=0931bfe1-07d7-4750-919f-c0d14943b84c",
+      "model": "Xbox Series X",
+      "name": "Xbox Series X",
+      "price": 499.99,
+      "processor": "AMD Zen 2",
+      "ram": 16,
+      "storage": 1000
+    },
+    "gaming-3": {
+      "brand": "Nintendo",
+      "category": "Gaming",
+      "description": "Nintendo gaming console with OLED display, improved audio, and new dock.",
+      "id": "gaming-3",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2FConsola-Nintendo-Switch-OLED-White-3D-Coperta.webp?alt=media&token=7e45e88c-450b-4446-ab4a-ce834b2f2c48",
+      "model": "Nintendo Switch OLED",
+      "name": "Nintendo Switch OLED",
+      "price": 349.99,
+      "processor": "Nvidia Custom Tegra",
+      "ram": 4,
+      "storage": 64
+    }
+  },
+  "laptops": {
+    "laptop-1": {
+      "brand": "Apple",
+      "category": "Laptops",
+      "connectivity": "Wi-Fi 6 (802.11ax), Bluetooth 5.0",
+      "description": "Apple laptop with 13-inch Retina display, M1 chip, and 8GB RAM.",
+      "dimensions": "11.97 x 8.36 x 0.63 inches",
+      "id": "laptop-1",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2FMacBook_Air_Space_Gray-1.webp?alt=media&token=757d72e8-4156-4c2e-8368-ebd4c7c7bd34",
+      "model": "MacBook Pro",
+      "name": "MacBook Pro",
+      "price": 1299,
+      "processor": "Apple M1 chip",
+      "ram": 8,
+      "resolution": "2560x1600",
+      "screenSize": 13.3,
+      "storage": 256,
+      "weight": 3
+    },
+    "laptop-2": {
+      "brand": "Dell",
+      "category": "Laptops",
+      "connectivity": "Wi-Fi 6 (802.11ax), Bluetooth 5.1",
+      "description": "Dell laptop with 13.4-inch InfinityEdge display, 11th Gen Intel Core i7 processor, and 16GB RAM.",
+      "dimensions": "11.64 x 7.82 x 0.58 inches",
+      "id": "laptop-2",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Fdell_xps_13.webp?alt=media&token=57513b09-2fbe-466b-88b9-90e7b44c1858",
+      "model": "XPS 13",
+      "name": "Dell XPS 13",
+      "price": 1399,
+      "processor": "11th Gen Intel Core i7",
+      "ram": 16,
+      "resolution": "1920x1200",
+      "screenSize": 13.4,
+      "storage": 512,
+      "weight": 2.8
+    },
+    "laptop-3": {
+      "brand": "HP",
+      "category": "Laptops",
+      "connectivity": "Wi-Fi 6 (802.11ax), Bluetooth 5.0",
+      "description": "HP laptop with 13.3-inch OLED display, 11th Gen Intel Core i7 processor, and 16GB RAM.",
+      "dimensions": "11.75 x 8.67 x 0.67 inches",
+      "id": "laptop-3",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Fhp_spectre_x360.webp?alt=media&token=69e86edb-1201-4dfd-83a7-4a689ecc443f",
+      "model": "Spectre x360",
+      "name": "HP Spectre x360",
+      "price": 1599,
+      "processor": "11th Gen Intel Core i7",
+      "ram": 16,
+      "resolution": "1920x1080",
+      "screenSize": 13.3,
+      "storage": 1,
+      "weight": 2.92
+    }
+  },
+  "peripherals": {
+    "peripheral-1": {
+      "category": "Peripherals",
+      "description": "A high-end wireless mouse with advanced features such as customizability, gesture controls, and fast scrolling.",
+      "id": "peripheral-1",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2FLogitech-MX-Master-3-Mac-Angle-3.webp?alt=media&token=2a8c0fd5-93fc-43fa-bddc-97fe66fc778e",
+      "price": 99.99,
+      "title": "Logitech MX Master 3 Wireless Mouse"
+    },
+    "peripheral-2": {
+      "category": "Peripherals",
+      "description": "A high-end mechanical gaming keyboard with customizable RGB lighting, Cherry MX Speed switches, and dedicated macro keys.",
+      "id": "peripheral-2",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Fcorsair_k95.jpg?alt=media&token=aac80e0b-4591-4e00-ba31-9e646d9fb800",
+      "price": 199.99,
+      "title": "Corsair K95 RGB Platinum XT Mechanical Gaming Keyboard"
+    },
+    "peripheral-3": {
+      "category": "Peripherals",
+      "description": "A high-end 27-inch 4K monitor with USB-C connectivity, DisplayHDR 400 certification, and color accuracy for professional use.",
+      "id": "peripheral-3",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Fdell_ultrasharp.jpg?alt=media&token=90807689-e39b-4a80-b42f-d6896d2f8ea5",
+      "price": 629.99,
+      "title": "Dell Ultrasharp U2720Q 27-inch 4K Monitor"
+    }
+  },
+  "photo": {
+    "ph-1": {
+      "category": "Photo",
+      "description": "A full-frame mirrorless camera with a 30.3MP CMOS sensor, 4K video, and advanced autofocus system.",
+      "id": "ph-1",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2FCanon-EOS-R-Aparat-Foto-Mirrorless-303-MP-Full-Frame-Body.1.webp?alt=media&token=b0546106-8b8f-4702-8298-3acb19c0a0e3",
+      "price": 1799,
+      "title": "Canon EOS R Mirrorless Digital Camera"
+    },
+    "ph-2": {
+      "category": "Photo",
+      "description": "A compact and foldable drone with a 4K camera, 3-axis gimbal, and up to 34 minutes of flight time.",
+      "id": "ph-2",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Fdji_mavic.jpg?alt=media&token=987a9d8e-30a8-4cf2-94db-8c7b23df2fac",
+      "price": 988,
+      "title": "DJI Mavic Air 2 Fly More Combo"
+    },
+    "ph-3": {
+      "category": "Photo",
+      "description": "A fun and compact instant camera with automatic exposure and a built-in selfie mirror.",
+      "id": "ph-3",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Ffujifilm.webp?alt=media&token=1e72e455-456d-4911-8da5-57d0a15d722e",
+      "price": 69,
+      "title": "Fujifilm Instax Mini 11 Instant Camera"
+    }
+  },
+  "smartphones": {
+    "phone-1": {
+      "brand": "Apple",
+      "category": "Smartphones",
+      "connectivity": "5G, Wi-Fi 6 (802.11ax), Bluetooth 5.0",
+      "description": "Apple smartphone with 6.1-inch Super Retina XDR display, A15 Bionic chip, and 128GB storage.",
+      "dimensions": "5.78 x 2.82 x 0.3 inches",
+      "id": "phone-1",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Fiphone_13_pro_gold_pdp_image_position-1a__wwen_12.jpg?alt=media&token=c3c26b7c-a171-4ec8-bcad-ac6054b2148c",
+      "model": "iPhone 13 Pro",
+      "name": "iPhone 13 Pro",
+      "price": 999,
+      "processor": "Apple A15 Bionic",
+      "ram": 6,
+      "resolution": "2532x1170",
+      "screenSize": 6.1,
+      "storage": 128,
+      "weight": 0.38
+    },
+    "phone-2": {
+      "brand": "Samsung",
+      "category": "Smartphones",
+      "connectivity": "5G, Wi-Fi 6E (802.11ax), Bluetooth 5.2",
+      "description": "Samsung smartphone with 6.2-inch Dynamic AMOLED 2X display, Exynos 2100 processor, and 128GB storage.",
+      "dimensions": "5.97 x 2.8 x 0.31 inches",
+      "id": "phone-2",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Fgalaxy_s21.avif?alt=media&token=ae8d2146-4fa8-4f1b-a2ac-d7eb5175fe9e",
+      "model": "Galaxy S21",
+      "name": "Samsung Galaxy S21",
+      "price": 799.99,
+      "processor": "Exynos 2100",
+      "ram": 8,
+      "resolution": "2400x1080",
+      "screenSize": 6.2,
+      "storage": 128,
+      "weight": 0.17
+    },
+    "phone-3": {
+      "brand": "Google",
+      "category": "Smartphones",
+      "connectivity": "5G, Wi-Fi 6 (802.11ax), Bluetooth 5.2",
+      "description": "Google smartphone with 6.4-inch AMOLED display, Google Tensor processor, and 128GB storage.",
+      "dimensions": "6.5 x 2.9 x 0.39 inches",
+      "id": "phone-3",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Fpixel6.jpg?alt=media&token=a9b80628-2b3d-4187-a433-ccad9808fbfe",
+      "model": "Pixel 6",
+      "name": "Google Pixel 6",
+      "price": 799,
+      "processor": "Google Tensor",
+      "ram": 8,
+      "resolution": "2400x1080",
+      "screenSize": 6.4,
+      "storage": 128,
+      "weight": 0.35
+    }
+  },
+  "software": {
+    "software-1": {
+      "category": "Software",
+      "description": "A subscription plan that includes Lightroom, Photoshop, and 20GB of cloud storage for professional photo editing and organization.",
+      "id": "software-1",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Fadobe.avif?alt=media&token=4f881a3a-1c17-4cd1-b4cc-955aa4f8dad6",
+      "price": 9.99,
+      "title": "Adobe Creative Cloud Photography Plan"
+    },
+    "software-2": {
+      "category": "Software",
+      "description": "A one-time purchase that includes Word, Excel, and PowerPoint for personal and educational use.",
+      "id": "software-2",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Foffice.jpg?alt=media&token=d1b4fcb7-4042-483c-970f-f6baf92fcfdc",
+      "price": 149.99,
+      "title": "Microsoft Office Home & Student 2021"
+    },
+    "software-3": {
+      "category": "Software",
+      "description": "A comprehensive antivirus and security suite that includes VPN, dark web monitoring, and password manager.",
+      "id": "software-3",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Fnorton.avif?alt=media&token=8fae7511-711d-4cd2-b488-87d1c71e5f92",
+      "price": 34.99,
+      "title": "Norton 360 Deluxe Antivirus"
+    }
+  },
+  "tablets": {
+    "tablet-1": {
+      "brand": "Apple",
+      "category": "Tablets",
+      "connectivity": "Wi-Fi 6 (802.11ax), Bluetooth 5.0",
+      "description": "Apple tablet with 10.9-inch Retina display, A14 Bionic chip, and 64GB storage.",
+      "dimensions": "9.74 x 7.0 x 0.24 inches",
+      "id": "tablet-1",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Fipad_air.webp?alt=media&token=5e82e28c-d429-45a1-bba7-161934d0d631",
+      "model": "iPad Air",
+      "name": "iPad Air",
+      "price": 599,
+      "processor": "Apple A14 Bionic",
+      "ram": 4,
+      "resolution": "2360x1640",
+      "screenSize": 10.9,
+      "storage": 64,
+      "weight": 1
+    },
+    "tablet-2": {
+      "brand": "Samsung",
+      "category": "Tablets",
+      "connectivity": "Wi-Fi 6 (802.11ax), Bluetooth 5.0",
+      "description": "Samsung tablet with 11-inch Super AMOLED display, Snapdragon 865+ processor, and 128GB storage.",
+      "dimensions": "10.08 x 6.5 x 0.22 inches",
+      "id": "tablet-2",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Fgalaxy_tabs7.webp?alt=media&token=9798b63b-e21b-482b-a1cc-35f7c7eeb2b2",
+      "model": "Galaxy Tab S7",
+      "name": "Samsung Galaxy Tab S7",
+      "price": 649.99,
+      "processor": "Qualcomm Snapdragon 865+",
+      "ram": 6,
+      "resolution": "2560x1600",
+      "screenSize": 11,
+      "storage": 128,
+      "weight": 1.1
+    },
+    "tablet-3": {
+      "brand": "Microsoft",
+      "category": "Tablets",
+      "connectivity": "Wi-Fi 6 (802.11ax), Bluetooth 5.0",
+      "description": "Microsoft tablet with 12.3-inch PixelSense display, 10th Gen Intel Core i5 processor, and 128GB storage.",
+      "dimensions": "11.5 x 7.9 x 0.33 inches",
+      "id": "tablet-3",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Fsurface_pro7.jpg?alt=media&token=63b56fd2-4f4c-4ef3-bf86-99441477d6c5",
+      "model": "Surface Pro 7",
+      "name": "Microsoft Surface Pro 7",
+      "price": 899.99,
+      "processor": "10th Gen Intel Core i5",
+      "ram": 8,
+      "resolution": "2736x1824",
+      "screenSize": 12.3,
+      "storage": 128,
+      "weight": 1.7
+    }
+  },
+  "tv": {
+    "tv-1": {
+      "category": "TV",
+      "description": "A 55-inch OLED TV with 4K resolution, Dolby Vision IQ, and NVIDIA G-Sync compatibility for immersive gaming.",
+      "id": "tv-1",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Flg_oled.webp?alt=media&token=e12858f3-8a83-4707-a7db-95de354e7413",
+      "price": 1396.99,
+      "title": "LG OLED55CXPUA 4K Smart OLED TV"
+    },
+    "tv-2": {
+      "category": "TV",
+      "description": "A 65-inch QLED TV with 4K resolution, Quantum HDR 12X, and Object Tracking Sound+ for cinematic audio experience.",
+      "id": "tv-2",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Fsamsung_4k.jpg?alt=media&token=0a48e165-636a-421d-bcf6-0e01faa69a54",
+      "price": 1499.99,
+      "title": "Samsung QN65Q80AAFXZA 4K Smart QLED TV"
+    },
+    "tv-3": {
+      "category": "TV",
+      "description": "A 55-inch OLED TV with 4K resolution, X1 Ultimate processor, and Acoustic Surface Audio+ for lifelike sound.",
+      "id": "tv-3",
+      "image": "https://firebasestorage.googleapis.com/v0/b/we-buy-ead50.appspot.com/o/products%2Fsony_xbr.jpg?alt=media&token=b46112e7-dbcb-4d21-b50e-b98fe2345ad8",
+      "price": 2099.99,
+      "title": "Sony XBR-55A9G 4K Smart OLED TV"
+    }
+  }
+}

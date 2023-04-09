@@ -10,14 +10,7 @@ import ClearIcon from '@mui/icons-material/Clear'
 
 import Products from '../Product-Page/Products'
 import { useState, useEffect } from 'react'
-import {
-  getDatabase,
-  ref,
-  set,
-  update,
-  onValue,
-  remove,
-} from 'firebase/database'
+import { ref, onValue, remove } from 'firebase/database'
 import db, { auth } from '../../database/firebase'
 
 const Favorites = () => {
@@ -34,7 +27,6 @@ const Favorites = () => {
           favorites.push(favorite)
         })
         setFavorites(favorites)
-        console.log(favorites)
       })
     }
   }, [user])

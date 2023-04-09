@@ -1,12 +1,10 @@
 import React from 'react'
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import Tabs from '@mui/joy/Tabs'
 import TabList from '@mui/joy/TabList'
 import Tab from '@mui/joy/Tab'
 import TabPanel from '@mui/joy/TabPanel'
-import Stack from '@mui/joy/Stack'
 import Button from '@mui/joy/Button'
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone'
 import MouseIcon from '@mui/icons-material/Mouse'
@@ -15,16 +13,12 @@ import SportsEsportsIcon from '@mui/icons-material/SportsEsports'
 import LaptopIcon from '@mui/icons-material/Laptop'
 import TabletAndroidIcon from '@mui/icons-material/TabletAndroid'
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks'
-import ComputerIcon from '@mui/icons-material/Computer'
 import WysiwygIcon from '@mui/icons-material/Wysiwyg'
 import PlayCircleIcon from '@mui/icons-material/PlayCircle'
 import CameraIcon from '@mui/icons-material/Camera'
 
 import Offers from './offers-carousel/Offers'
 import Box from '@mui/joy/Box'
-
-import { Link } from 'react-router-dom'
-import { Outlet } from 'react-router-dom'
 
 const AuxHeader = () => {
   const navigate = useNavigate()

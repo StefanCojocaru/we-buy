@@ -2,23 +2,14 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { auth } from '../../database/firebase'
 
-import SignIn from '../Sign/Sign-In/SignIn'
-import SignUp from '../Sign/Sign-Up/SignUp'
-
 import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
+
 import ListItemText from '@mui/material/ListItemText'
 import Divider from '@mui/material/Divider'
 import ListItemButton from '@mui/material/ListItemButton'
 import Box from '@mui/material/Box'
 
 import MyOrders from './MyOrders'
-
-const style = {
-  width: '100%',
-  maxWidth: 120,
-  bgcolor: 'background.paper',
-}
 
 const MyAccount = ({ user }) => {
   const navigate = useNavigate()
@@ -44,24 +35,22 @@ const MyAccount = ({ user }) => {
   }
 
   return (
-    // <>
-    //   {user ? (
-    //     <div>
-    //       <div>Hello {user}, you're logged in</div>
-    //       <button onClick={handleSignOut}>Sign Out</button>
-    //     </div>
-    //   ) : (
-    //     // <SignIn />
-    //     <div>signin</div>
-    //   )}
-    // </>
-
     <>
       <div>
         <h2>Welcome {user}</h2>
       </div>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <List sx={style} component="nav" aria-label="mailbox folders">
+        <List
+          sx={{
+            width: '100%',
+            maxWidth: 120,
+            bgcolor: 'black',
+            color: 'white',
+            borderRadius: '10px',
+          }}
+          component="nav"
+          aria-label="mailbox folders"
+        >
           <ListItemButton onClick={handleMyOrders}>
             <ListItemText primary="My Orders" />
           </ListItemButton>

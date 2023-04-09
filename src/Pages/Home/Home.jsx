@@ -9,18 +9,6 @@ import db from '../../database/firebase'
 const Home = () => {
   const [products, setProducts] = useState([])
 
-  // useEffect(() => {
-  //   const dbRef = ref(db, 'products')
-  //   onValue(dbRef, (snapshot) => {
-  //     const products = []
-  //     snapshot.forEach((childSnapshot) => {
-  //       const product = childSnapshot.val()
-  //       products.push(product)
-  //     })
-  //     setProducts(products)
-  //   })
-  // }, [])
-
   useEffect(() => {
     const dbRef = ref(db, 'products')
     onValue(dbRef, (snapshot) => {

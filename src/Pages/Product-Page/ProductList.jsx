@@ -4,22 +4,10 @@ import Box from '@mui/joy/Box'
 import Products from './Products'
 import db from '../../database/firebase'
 
-import { ref, onValue, child, get, set } from 'firebase/database'
+import { ref, onValue } from 'firebase/database'
 
 const ProductList = ({ category }) => {
   const [data, setData] = useState([])
-
-  // useEffect(() => {
-  //   const dbProducts = ref(db, `products/${category}`)
-  //   onValue(dbProducts, (snapshot) => {
-  //     const products = []
-  //     snapshot.forEach((childSnapshot) => {
-  //       const product = childSnapshot.val()
-  //       products.push(product)
-  //     })
-  //     setData(products)
-  //   })
-  // }, [category])
 
   useEffect(() => {
     const dbProducts = ref(db, `products/${category}`)
@@ -29,12 +17,16 @@ const ProductList = ({ category }) => {
     })
   }, [category])
 
-  console.log(data)
-
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+      }}
+    >
       {data.map((item) => (
-        <Products key={item.id} item={item} />
+        <Products key={item.id} item={item} category={category} />
       ))}
     </Box>
   )

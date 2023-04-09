@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import AspectRatio from '@mui/joy/AspectRatio'
 import Box from '@mui/joy/Box'
 import Button from '@mui/joy/Button'
@@ -7,57 +7,53 @@ import IconButton from '@mui/joy/IconButton'
 import Typography from '@mui/joy/Typography'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 
+import { SnackbarProvider, enqueueSnackbar, useSnackbar } from 'notistack'
+
 import db from '../../database/firebase'
 
-import { ref, onValue, child, get, set, update } from 'firebase/database'
+import { ref, get, set } from 'firebase/database'
 
-import { auth } from '../../database/firebase'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { Link } from 'react-router-dom'
 
-const Products = ({ item, category }) => {
-  // const [data, setData] = useState([]) // initialize empty array
+const Products = ({ item }) => {
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
-  // useEffect(() => {
-  //   const dbProducts = ref(db, `products/${category}`)
-  //   onValue(dbProducts, (snapshot) => {
-  //     const products = []
-  //     snapshot.forEach((childSnapshot) => {
-  //       const product = childSnapshot.val()
-  //       products.push(product)
-  //     })
-  //     setData(products)
-  //   })
-  // }, [category])
-  console.log(item)
-
-  // const handleFavorites = (item) => {
-  //   // console.log(productId)
-  //   const auth = getAuth() // get the current user's auth info
-  //   if (auth.currentUser) {
-  //     const userId = auth.currentUser.uid // get the current user's UID
-  //     const userRef = ref(db, `users/${userId}/favorites/`) // get the ref to the user's favorites for the selected product
-  //     set(userRef, item) // add the product to the user's favorites
-  //   }
-  // }
-
-  const handleFavorites = (item) => {
+  const handleFavorites = async (item) => {
     const auth = getAuth()
     if (auth.currentUser) {
       const userId = auth.currentUser.uid
       const userRef = ref(db, `users/${userId}/favorites/${item.id}`)
-      set(userRef, item)
+      const snapshot = await get(userRef) // get the snapshot of the userRef
+
+      if (snapshot.exists()) {
+        // if item already exists in favorites, don't add it and show snackbar
+        enqueueSnackbar('Item already in favorites', { variant: 'warning' })
+      } else {
+        // if item doesn't exist, add it to favorites and show snackbar
+        set(userRef, item)
+        enqueueSnackbar('Item added to favorites', { variant: 'success' })
+      }
     }
   }
-  const handleCart = (item) => {
+
+  const handleCart = async (item) => {
     const auth = getAuth()
     if (auth.currentUser) {
       const userId = auth.currentUser.uid
       const userRef = ref(db, `users/${userId}/cart/${item.id}`)
-      set(userRef, item)
+      const snapshot = await get(userRef) // get the snapshot of the userRef
+
+      if (snapshot.exists()) {
+        // if item already exists in favorites, don't add it and show snackbar
+        enqueueSnackbar('Item already in cart', { variant: 'warning' })
+      } else {
+        // if item doesn't exist, add it to favorites and show snackbar
+        set(userRef, item)
+        enqueueSnackbar('Item added to cart', { variant: 'success' })
+      }
     }
   }
-  console.log(item)
 
   return (
     <>
@@ -72,7 +68,9 @@ const Products = ({ item, category }) => {
             }}
           >
             <Link
-              to={`/product/${category}/${item.id}`}
+              to={`/product/${item.category}/${item.id}/${
+                item.name ? item.name : item.title
+              }`}
               style={{ textDecoration: 'none' }}
             >
               <Typography level="h2" fontSize="md" sx={{ mb: 0.5 }}>
@@ -82,12 +80,16 @@ const Products = ({ item, category }) => {
                 {item.brand ? item.brand : item.author}
               </Typography>
 
-              <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
+              <AspectRatio sx={{ my: 2 }}>
                 <img
                   // IMAGINE AICI
                   src={item.image}
                   loading="lazy"
                   alt=""
+                  style={{
+                    objectFit: 'contain',
+                    backgroundColor: 'white',
+                  }}
                 />
               </AspectRatio>
             </Link>
@@ -104,6 +106,7 @@ const Products = ({ item, category }) => {
                 </Typography>
               </div>
               <Box sx={{ display: 'flex' }}>
+                <SnackbarProvider />
                 <IconButton
                   aria-label="bookmark Bahamas Islands"
                   variant="plain"

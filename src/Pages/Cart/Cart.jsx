@@ -41,6 +41,7 @@ const Cart = () => {
     setCart([])
   }
 
+  // REDO THIS
   const placeOrder = () => {
     if (user) {
       const dbOrders = ref(db, `users/${user.uid}/myOrders`)

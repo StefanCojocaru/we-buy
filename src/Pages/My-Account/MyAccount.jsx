@@ -11,7 +11,8 @@ import Box from '@mui/material/Box'
 
 import MyOrders from './MyOrders'
 
-const MyAccount = ({ user }) => {
+const MyAccount = () => {
+  const user = auth.currentUser
   const navigate = useNavigate()
   function handleSignOut() {
     auth
@@ -37,7 +38,7 @@ const MyAccount = ({ user }) => {
   return (
     <>
       <div>
-        <h2>Welcome {user}</h2>
+        <h2>Welcome {user.displayName}</h2>
       </div>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <List

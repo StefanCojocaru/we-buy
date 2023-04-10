@@ -8,29 +8,24 @@ import Typography from '@mui/joy/Typography'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 
 import { SnackbarProvider, enqueueSnackbar, useSnackbar } from 'notistack'
-
 import db from '../../database/firebase'
-
 import { ref, get, set } from 'firebase/database'
-
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { Link } from 'react-router-dom'
+import { auth } from '../../database/firebase'
 
 const Products = ({ item }) => {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+  const user = auth.currentUser
 
   const handleFavorites = async (item) => {
-    const auth = getAuth()
-    if (auth.currentUser) {
-      const userId = auth.currentUser.uid
+    if (user) {
+      const userId = user.uid
       const userRef = ref(db, `users/${userId}/favorites/${item.id}`)
-      const snapshot = await get(userRef) // get the snapshot of the userRef
+      const snapshot = await get(userRef)
 
       if (snapshot.exists()) {
-        // if item already exists in favorites, don't add it and show snackbar
         enqueueSnackbar('Item already in favorites', { variant: 'warning' })
       } else {
-        // if item doesn't exist, add it to favorites and show snackbar
         set(userRef, item)
         enqueueSnackbar('Item added to favorites', { variant: 'success' })
       }
@@ -38,17 +33,14 @@ const Products = ({ item }) => {
   }
 
   const handleCart = async (item) => {
-    const auth = getAuth()
-    if (auth.currentUser) {
-      const userId = auth.currentUser.uid
+    if (user) {
+      const userId = user.uid
       const userRef = ref(db, `users/${userId}/cart/${item.id}`)
-      const snapshot = await get(userRef) // get the snapshot of the userRef
+      const snapshot = await get(userRef)
 
       if (snapshot.exists()) {
-        // if item already exists in favorites, don't add it and show snackbar
         enqueueSnackbar('Item already in cart', { variant: 'warning' })
       } else {
-        // if item doesn't exist, add it to favorites and show snackbar
         set(userRef, item)
         enqueueSnackbar('Item added to cart', { variant: 'success' })
       }
@@ -106,7 +98,6 @@ const Products = ({ item }) => {
                 </Typography>
               </div>
               <Box sx={{ display: 'flex' }}>
-                <SnackbarProvider />
                 <IconButton
                   aria-label="bookmark Bahamas Islands"
                   variant="plain"

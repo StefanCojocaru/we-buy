@@ -3,35 +3,22 @@ import Avatar from '@mui/material/Avatar'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Checkbox from '@mui/material/Checkbox'
 import Link from '@mui/material/Link'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../../database/firebase'
-import db from '../../../database/firebase'
+import db, { auth } from '../../../database/firebase'
 import { updateProfile } from 'firebase/auth'
-import { getAuth, onAuthStateChanged } from 'firebase/auth'
-import { getDatabase, ref, set, update } from 'firebase/database'
+import { onAuthStateChanged } from 'firebase/auth'
+import { ref, set } from 'firebase/database'
 
 export default function SignUp() {
-  //     const handleSubmit = (event) => {
-  //     event.preventDefault()
-  //     const data = new FormData(event.currentTarget)
-  //     console.log({
-  //       email: data.get('email'),
-  //       password: data.get('password'),
-  //     })
-  //   }
-
   const navigate = useNavigate()
 
   const [firstName, setFirstName] = useState('')
@@ -47,12 +34,14 @@ export default function SignUp() {
         // Signed in
         const user = userCredential.user
 
+        // Add firstName, lastName to user profile
         updateProfile(user, {
           displayName: `${firstName} ${lastName}`,
         })
           .then(() => {
             console.log('User created with display name:', user.displayName)
 
+            // Add uid to users node
             onAuthStateChanged(auth, (user) => {
               if (user) {
                 const usersRef = ref(db, 'users/' + user.uid)
@@ -71,7 +60,7 @@ export default function SignUp() {
                   })
               }
             })
-
+            // go to homepage after signup
             navigate('/')
           })
           .catch((error) => {
@@ -79,14 +68,11 @@ export default function SignUp() {
           })
 
         console.log(user)
-
-        // ...
       })
       .catch((error) => {
         const errorCode = error.code
         const errorMessage = error.message
         console.log(errorCode, errorMessage)
-        // ..
       })
   }
 

@@ -1,9 +1,5 @@
 import React from 'react'
 
-import image1 from './images/offer3.png'
-import image2 from './images/offer3.png'
-import image3 from './images/offer3.png'
-import image4 from './images/offer3.png'
 import OfferCard from './OfferCard'
 
 import { Carousel } from 'react-responsive-carousel'
@@ -14,7 +10,7 @@ const Offers = () => {
     <Carousel
       autoPlay={true}
       infiniteLoop={true}
-      interval={3000}
+      interval={2000}
       showArrows={false}
       showThumbs={false}
     >

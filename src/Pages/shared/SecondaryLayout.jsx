@@ -2,11 +2,11 @@ import React from 'react'
 import Header from './components/Header'
 import { Outlet } from 'react-router-dom'
 
-const SecondaryLayout = ({ user }) => {
+const SecondaryLayout = () => {
   return (
     <>
       <nav>
-        <Header user={user} />
+        <Header />
       </nav>
       <Outlet />
     </>

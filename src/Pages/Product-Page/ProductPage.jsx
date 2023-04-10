@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import db from '../../database/firebase'
 import { useState, useEffect } from 'react'
-import { ref, onValue } from 'firebase/database'
+import { ref, onValue, get, set } from 'firebase/database'
 
 import Products from './Products'
 
@@ -17,11 +17,16 @@ import Button from '@mui/joy/Button'
 
 import Table from '@mui/joy/Table'
 import Sheet from '@mui/joy/Sheet'
+import { SnackbarProvider, enqueueSnackbar, useSnackbar } from 'notistack'
+import { auth } from '../../database/firebase'
 
 const ProductPage = () => {
   const { id, category } = useParams()
   const [product, setProduct] = useState({})
   const [similarProducts, setSimilarProducts] = useState([])
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+
+  const user = auth.currentUser
 
   useEffect(() => {
     const dbProduct = ref(db, `products/${category}/${id}`)
@@ -35,6 +40,36 @@ const ProductPage = () => {
       setSimilarProducts(Object.values(categoryData))
     })
   }, [id, category])
+
+  const handleFavorites = async (item) => {
+    if (user) {
+      const userId = user.uid
+      const userRef = ref(db, `users/${userId}/favorites/${item.id}`)
+      const snapshot = await get(userRef)
+
+      if (snapshot.exists()) {
+        enqueueSnackbar('Item already in favorites', { variant: 'warning' })
+      } else {
+        set(userRef, item)
+        enqueueSnackbar('Item added to favorites', { variant: 'success' })
+      }
+    }
+  }
+
+  const handleCart = async (item) => {
+    if (user) {
+      const userId = user.uid
+      const userRef = ref(db, `users/${userId}/cart/${item.id}`)
+      const snapshot = await get(userRef)
+
+      if (snapshot.exists()) {
+        enqueueSnackbar('Item already in cart', { variant: 'warning' })
+      } else {
+        set(userRef, item)
+        enqueueSnackbar('Item added to cart', { variant: 'success' })
+      }
+    }
+  }
 
   const characteristics = [
     {
@@ -102,12 +137,14 @@ const ProductPage = () => {
                   <Button
                     startDecorator={<ShoppingCartIcon />}
                     sx={{ backgroundColor: '#1B1B1B', marginRight: '1rem' }}
+                    onClick={() => handleFavorites(product)}
                   >
                     Add to Cart
                   </Button>
                   <Button
                     startDecorator={<FavoriteBorderIcon />}
                     sx={{ backgroundColor: '#1B1B1B', marginRight: '1rem' }}
+                    onClick={() => handleCart(product)}
                   >
                     Add to Favorites
                   </Button>

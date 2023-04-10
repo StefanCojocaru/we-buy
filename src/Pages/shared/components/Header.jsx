@@ -13,9 +13,12 @@ import AspectRatio from '@mui/joy/AspectRatio'
 import logo from '../../../logo/logo.png'
 
 import { Link } from 'react-router-dom'
+import { auth } from '../../../database/firebase'
 
-const Header = ({ user }) => {
+const Header = () => {
+  // SEARCH BAR !!
   const [searchValue, setSearchValue] = useState('')
+  const user = auth.currentUser
 
   const handleSearch = () => {
     console.log(searchValue)

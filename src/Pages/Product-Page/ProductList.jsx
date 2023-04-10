@@ -12,7 +12,7 @@ const ProductList = ({ category }) => {
   useEffect(() => {
     const dbProducts = ref(db, `products/${category}`)
     onValue(dbProducts, (snapshot) => {
-      const products = snapshot.val() || {}
+      const products = snapshot.val()
       setData(Object.values(products))
     })
   }, [category])

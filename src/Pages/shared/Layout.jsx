@@ -6,10 +6,11 @@ import Header from './components/Header'
 const Layout = () => {
   return (
     <>
-      <nav>
+      <header style={{ position: 'sticky', top: 0, zIndex: 1 }}>
         <Header />
-        <AuxHeader />
-      </nav>
+      </header>
+      <AuxHeader />
+
       <Outlet />
     </>
   )

@@ -74,11 +74,19 @@ const Cart = () => {
       </Typography>
       <Box display="inline-block">
         <List aria-labelledby="basic-list-demo">
-          {cart.map((item) => (
-            <ListItem key={item.id}>
-              <Products item={item} />
-            </ListItem>
-          ))}
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+            }}
+          >
+            {cart.map((item) => (
+              <ListItem key={item.id}>
+                <Products item={item} />
+              </ListItem>
+            ))}
+          </Box>
         </List>
         <h3>Total Price: {totalPrice}$</h3>
         <Button

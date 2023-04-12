@@ -31,6 +31,9 @@ const Favorites = () => {
     }
   }, [user])
 
+  const numFavorites = favorites.length
+  console.log(numFavorites)
+
   const clearAll = () => {
     if (user) {
       const dbFavorites = ref(db, `users/${user.uid}/favorites`)
@@ -51,11 +54,19 @@ const Favorites = () => {
       </Typography>
       <Box display="inline-block">
         <List aria-labelledby="basic-list-demo">
-          {favorites.map((item) => (
-            <ListItem key={item.id}>
-              <Products item={item} />
-            </ListItem>
-          ))}
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+            }}
+          >
+            {favorites.map((item) => (
+              <ListItem key={item.id}>
+                <Products item={item} />
+              </ListItem>
+            ))}
+          </Box>
         </List>
         <Button
           startDecorator={<ShoppingCartIcon />}

@@ -8,6 +8,7 @@ import MyAccount from './Pages/My-Account/MyAccount.jsx'
 import Favorites from './Pages/Favorites/Favorites.jsx'
 import Cart from './Pages/Cart/Cart.jsx'
 import ProductPage from './Pages/Product-Page/ProductPage.jsx'
+import SearchResult from './Pages/Search/SearchResult.jsx'
 
 import './style/style.css'
 
@@ -22,6 +23,11 @@ const App = () => {
   const ProductsWithCategory = () => {
     const { category } = useParams()
     return <ProductList category={category} />
+  }
+  const SearchWithValue = () => {
+    const { searchValue } = useParams()
+    console.log(searchValue)
+    return <SearchResult searchValue={searchValue} />
   }
 
   return (
@@ -48,6 +54,9 @@ const App = () => {
           </Route>
           <Route path="/cart" element={<SecondaryLayout />}>
             <Route index element={<Cart />} />
+          </Route>
+          <Route path="/search" element={<SecondaryLayout />}>
+            <Route path=":searchValue" element={<SearchWithValue />} />
           </Route>
         </Routes>
       </SnackbarProvider>

@@ -56,7 +56,11 @@ const Products = ({ item }) => {
             variant="outlined"
             sx={{
               marginTop: 2,
-              width: 340,
+              minWidth: 340,
+              maxWidth: 340,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
             }}
           >
             <Link

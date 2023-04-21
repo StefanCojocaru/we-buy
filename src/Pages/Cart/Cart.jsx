@@ -16,6 +16,7 @@ import db, { auth } from '../../database/firebase'
 const Cart = () => {
   const [cart, setCart] = useState([])
   const user = auth.currentUser
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     if (user) {
@@ -31,7 +32,9 @@ const Cart = () => {
     }
   }, [user])
 
-  const totalPrice = cart.reduce((total, item) => total + item.price, 0)
+  const totalPrice = cart
+    .reduce((total, item) => total + item.price, 0)
+    .toFixed(2)
 
   const clearAll = () => {
     if (user) {
@@ -41,27 +44,41 @@ const Cart = () => {
     setCart([])
   }
 
+  const currentDate = new Date()
+  const orderDate = `${currentDate.getFullYear()}-${
+    currentDate.getMonth() + 1
+  }-${currentDate.getDate()}`
+
   // REDO THIS
   const placeOrder = () => {
     if (user) {
       const dbOrders = ref(db, `users/${user.uid}/myOrders`)
       const newOrderRef = push(dbOrders)
 
-      const orderItems = cart.map((item) => ({
-        productId: item.id,
-        price: item.price,
-      }))
+      // const orderItems = cart.map((item) => ({
+      //   ...item,
+      // }))
+
+      const orderItems = cart.reduce((acc, item) => {
+        acc[item.id] = {
+          ...item,
+        }
+        return acc
+      }, {})
 
       const newOrderKey = newOrderRef.key
       const newOrderPath = `users/${user.uid}/myOrders/${newOrderKey}`
+
       set(ref(db, newOrderPath), {
         orderItems,
         totalPrice,
+        orderDate: orderDate,
       })
 
       clearAll()
     }
   }
+
   return (
     <Box textAlign="center" marginTop="2rem">
       <Typography

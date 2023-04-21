@@ -10,6 +10,7 @@ import ListItemButton from '@mui/material/ListItemButton'
 import Box from '@mui/material/Box'
 
 import MyOrders from './MyOrders'
+import Paper from '@mui/material/Paper'
 
 const MyAccount = () => {
   const user = auth.currentUser
@@ -48,6 +49,7 @@ const MyAccount = () => {
             bgcolor: 'black',
             color: 'white',
             borderRadius: '10px',
+            height: 300,
           }}
           component="nav"
           aria-label="mailbox folders"
@@ -77,14 +79,14 @@ const MyAccount = () => {
         </List>
 
         {selectedItem === 'myOrders' && (
-          <Box sx={{ backgroundColor: 'lightblue', width: '90%' }}>
+          <Paper elevation={8} sx={{ width: '90%' }}>
             <MyOrders />
-          </Box>
+          </Paper>
         )}
         {selectedItem === 'sellProduct' && (
-          <Box sx={{ backgroundColor: 'lightblue', width: '90%' }}>
+          <Paper elevation={8} sx={{ width: '90%' }}>
             <h3>Selling Form</h3>
-          </Box>
+          </Paper>
         )}
       </Box>
     </>

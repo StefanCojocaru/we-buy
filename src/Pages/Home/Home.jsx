@@ -27,6 +27,7 @@ const Home = () => {
 
   return (
     <div
+      className="content"
       style={{
         marginLeft: '10rem',
         marginRight: '10rem',

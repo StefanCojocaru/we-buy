@@ -61,6 +61,7 @@ const AuxHeader = () => {
             sx={{
               display: 'flex',
               flexDirection: 'row',
+              justifyContent: 'space-between',
             }}
           >
             <Box

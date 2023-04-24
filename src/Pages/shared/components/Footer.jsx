@@ -150,15 +150,36 @@ const Footer = () => {
               Payment Methods
             </Typography>
             <Box>
-              <div className="container">
-                <div className="btn fb-btn">
-                  <i className="fa-brands fa-apple-pay"></i>
+              <div className="paymentContainer">
+                <div className="paymentCard">
+                  <i
+                    className="fa-brands fa-cc-visa"
+                    style={{ color: '#000000' }}
+                  ></i>
                 </div>
-                <div className="btn ig-btn">
-                  <i className="fa fa-instagram" aria-hidden="true" id="ig"></i>
+                <div className="paymentCard">
+                  <i
+                    className="fa-brands fa-cc-mastercard"
+                    style={{ color: '#000000' }}
+                  ></i>
                 </div>
-                <div className="btn tw-btn">
-                  <i className="fa fa-twitter" aria-hidden="true" id="tw"></i>
+                <div className="paymentCard">
+                  <i
+                    className="fa-brands fa-apple-pay"
+                    style={{ color: '#000000' }}
+                  ></i>
+                </div>
+                <div className="paymentCard">
+                  <i
+                    className="fa-brands fa-google-pay"
+                    style={{ color: '#000000' }}
+                  ></i>
+                </div>
+                <div className="paymentCard">
+                  <i
+                    className="fa-solid fa-money-bill-transfer"
+                    style={{ color: '#000000' }}
+                  ></i>
                 </div>
               </div>
             </Box>

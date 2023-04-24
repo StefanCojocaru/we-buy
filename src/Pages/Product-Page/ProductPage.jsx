@@ -19,6 +19,7 @@ import Table from '@mui/joy/Table'
 import Sheet from '@mui/joy/Sheet'
 import { SnackbarProvider, enqueueSnackbar, useSnackbar } from 'notistack'
 import { auth } from '../../database/firebase'
+import Divider from '@mui/material/Divider'
 
 const ProductPage = () => {
   const { id, category } = useParams()
@@ -160,7 +161,7 @@ const ProductPage = () => {
           </Box>
           <Box>
             <h3>Similar Products</h3>
-
+            <Divider />
             <Box sx={{ display: 'flex', gap: '10px' }}>
               {similarProducts
                 .filter((item) => item.id !== product.id)
@@ -171,6 +172,7 @@ const ProductPage = () => {
           </Box>
           <Box>
             <h3>Product Details</h3>
+            <Divider />
             <Sheet>
               <Table aria-label="striped table" stripe="odd">
                 <thead>

@@ -5,6 +5,7 @@ import Products from './Products'
 import db from '../../database/firebase'
 
 import { ref, onValue } from 'firebase/database'
+import Divider from '@mui/material/Divider'
 
 const ProductList = ({ category }) => {
   const [data, setData] = useState([])
@@ -18,17 +19,27 @@ const ProductList = ({ category }) => {
   }, [category])
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between',
+    <div
+      style={{
+        marginLeft: '10rem',
+        marginRight: '10rem',
+        paddingBottom: '11.5rem',
       }}
     >
-      {data.map((item) => (
-        <Products key={item.id} item={item} category={category} />
-      ))}
-    </Box>
+      <h2>{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
+      <Divider dark />
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+        }}
+      >
+        {data.map((item) => (
+          <Products key={item.id} item={item} category={category} />
+        ))}
+      </Box>
+    </div>
   )
 }
 

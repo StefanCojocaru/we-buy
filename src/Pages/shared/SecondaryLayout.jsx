@@ -6,7 +6,7 @@ import Footer from './components/Footer'
 const SecondaryLayout = () => {
   return (
     <>
-      <nav>
+      <nav style={{ position: 'sticky', top: 0, zIndex: 1 }}>
         <Header />
       </nav>
       <Outlet />

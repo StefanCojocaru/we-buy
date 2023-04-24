@@ -27,7 +27,11 @@ const Header = () => {
 
   const handleSearch = () => {
     console.log(searchValue)
-    navigate(`/search/${searchValue}`)
+    if (searchValue) {
+      navigate(`/search/${searchValue}`)
+    } else {
+      // Do nothing if search value is empty
+    }
   }
 
   const handleInputChange = (event) => {

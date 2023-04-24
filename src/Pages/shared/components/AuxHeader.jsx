@@ -28,7 +28,7 @@ const AuxHeader = () => {
   }
 
   return (
-    <div>
+    <div style={{ marginLeft: '10rem', marginRight: '10rem' }}>
       <Tabs
         aria-label="Basic tabs"
         defaultValue={0}

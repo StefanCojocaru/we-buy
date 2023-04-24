@@ -37,7 +37,13 @@ const MyAccount = () => {
   }
 
   return (
-    <>
+    <div
+      style={{
+        marginLeft: '10rem',
+        marginRight: '10rem',
+        paddingBottom: '11.5rem',
+      }}
+    >
       <div>
         <h2>Welcome {user.displayName}</h2>
       </div>
@@ -89,7 +95,7 @@ const MyAccount = () => {
           </Paper>
         )}
       </Box>
-    </>
+    </div>
   )
 }
 export default MyAccount

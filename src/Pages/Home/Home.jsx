@@ -26,7 +26,13 @@ const Home = () => {
   }, [])
 
   return (
-    <>
+    <div
+      style={{
+        marginLeft: '10rem',
+        marginRight: '10rem',
+        paddingBottom: '11.5rem',
+      }}
+    >
       <h2>All products</h2>
       <Box
         sx={{
@@ -39,7 +45,7 @@ const Home = () => {
           <Products key={product.id} item={product} />
         ))}
       </Box>
-    </>
+    </div>
   )
 }
 

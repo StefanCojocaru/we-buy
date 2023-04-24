@@ -94,7 +94,13 @@ const ProductPage = () => {
   ]
 
   return (
-    <div>
+    <div
+      style={{
+        marginLeft: '10rem',
+        marginRight: '10rem',
+        paddingBottom: '11.5rem',
+      }}
+    >
       <Box>breadcrumbs</Box>
       {product ? (
         <Box>

@@ -80,7 +80,13 @@ const Cart = () => {
   }
 
   return (
-    <Box textAlign="center" marginTop="2rem">
+    <Box
+      textAlign="center"
+      marginTop="2rem"
+      marginLeft="10rem"
+      marginRight="10rem"
+      paddingBottom="11.5rem"
+    >
       <Typography
         id="basic-list-demo"
         level="body3"

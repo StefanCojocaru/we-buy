@@ -43,7 +43,13 @@ const SearchResult = ({ searchValue }) => {
   }, [products])
 
   return (
-    <div>
+    <div
+      style={{
+        marginLeft: '10rem',
+        marginRight: '10rem',
+        paddingBottom: '11.5rem',
+      }}
+    >
       {products.length ? (
         <>
           <h2>Search results for "{searchValue}"</h2>

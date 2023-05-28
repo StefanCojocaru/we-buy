@@ -27,7 +27,7 @@ const ProductList = ({ category }) => {
       }}
     >
       <h2>{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
-      <Divider dark />
+      <Divider/>
       <Box
         sx={{
           display: 'flex',

@@ -1,150 +1,192 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-import Tabs from '@mui/joy/Tabs'
-import TabList from '@mui/joy/TabList'
-import Tab from '@mui/joy/Tab'
-import TabPanel from '@mui/joy/TabPanel'
-import Button from '@mui/joy/Button'
-import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone'
-import MouseIcon from '@mui/icons-material/Mouse'
-import TvIcon from '@mui/icons-material/Tv'
-import SportsEsportsIcon from '@mui/icons-material/SportsEsports'
-import LaptopIcon from '@mui/icons-material/Laptop'
-import TabletAndroidIcon from '@mui/icons-material/TabletAndroid'
-import LibraryBooksIcon from '@mui/icons-material/LibraryBooks'
-import WysiwygIcon from '@mui/icons-material/Wysiwyg'
-import PlayCircleIcon from '@mui/icons-material/PlayCircle'
-import CameraIcon from '@mui/icons-material/Camera'
+import Tabs from "@mui/joy/Tabs";
+import TabList from "@mui/joy/TabList";
+import Tab from "@mui/joy/Tab";
+import TabPanel from "@mui/joy/TabPanel";
+import Button from "@mui/joy/Button";
+import PhoneIphoneIcon from "@mui/icons-material/PhoneIphone";
+import MouseIcon from "@mui/icons-material/Mouse";
+import TvIcon from "@mui/icons-material/Tv";
+import SportsEsportsIcon from "@mui/icons-material/SportsEsports";
+import LaptopIcon from "@mui/icons-material/Laptop";
+import TabletAndroidIcon from "@mui/icons-material/TabletAndroid";
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import WysiwygIcon from "@mui/icons-material/Wysiwyg";
+import PlayCircleIcon from "@mui/icons-material/PlayCircle";
+import CameraIcon from "@mui/icons-material/Camera";
 
-import Offers from './offers-carousel/Offers'
-import Box from '@mui/joy/Box'
+import Offers from "./offers-carousel/Offers";
+import Box from "@mui/joy/Box";
 
 const AuxHeader = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleButtonClick = (category) => {
-    navigate(`/products/${category}`)
-  }
+    navigate(`/products/${category}`);
+  };
 
   return (
-    <div style={{ marginLeft: '10rem', marginRight: '10rem' }}>
+    <div style={{ width: "1200px" }}>
       <Tabs
         aria-label="Basic tabs"
         defaultValue={0}
         sx={{
-          borderRadius: 'lg',
-          backgroundColor: '#1B1B1B',
-          marginTop: '1rem',
+          borderRadius: "lg",
+          backgroundColor: "#3F72AF",
+          marginTop: "1rem",
+          boxShadow: "0px 6px 14px rgba(0, 0, 0, 0.4)",
         }}
       >
         <TabList
           sx={{
-            display: 'flex',
-            alignItems: 'flex-start',
+            display: "flex",
+            alignItems: "flex-start",
+            backgroundColor: "rgba(219, 226, 239,1)",
           }}
         >
-          <Tab sx={{ fontWeight: 'bold' }}>Products</Tab>
-          <Tab sx={{ fontWeight: 'bold' }}>Resealed</Tab>
-          <Tab sx={{ fontWeight: 'bold' }}>WEBUY Offers</Tab>
+          <Tab
+            sx={{
+              fontWeight: "bold",
+              backgroundColor: "rgba(219, 226, 239,1)",
+              color: "#000",
+              fontFamily: "apercu_proregular",
+            }}
+          >
+            Products
+          </Tab>
+          <Tab
+            sx={{
+              fontWeight: "bold",
+              backgroundColor: "rgba(219, 226, 239,1)",
+              color: "#000",
+              fontFamily: "apercu_proregular",
+            }}
+          >
+            Resealed
+          </Tab>
+          <Tab
+            sx={{
+              fontWeight: "bold",
+              backgroundColor: "rgba(219, 226, 239,1)",
+              color: "#000",
+              fontFamily: "apercu_proregular",
+            }}
+          >
+            WEBUY Offers
+          </Tab>
         </TabList>
         <TabPanel
           value={0}
           sx={{
             p: 2,
-            backgroundColor: '#1B1B1B',
-            borderBottomRightRadius: '20px',
-            borderBottomLeftRadius: '20px',
+            backgroundColor: "#3F72AF",
+            borderBottomRightRadius: "20px",
+            borderBottomLeftRadius: "20px",
           }}
         >
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
             }}
           >
             <Box
               sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
               }}
             >
               <Button
-                onClick={() => handleButtonClick('laptops')}
+                onClick={() => handleButtonClick("laptops")}
                 value={0}
                 startDecorator={<LaptopIcon />}
-                sx={{ backgroundColor: 'transparent' }}
+                sx={{
+                  backgroundColor: "transparent",
+                  fontFamily: "apercu_proregular",
+                }}
               >
                 Laptop
               </Button>
               <Button
-                onClick={() => handleButtonClick('tablets')}
+                onClick={() => handleButtonClick("tablets")}
                 value={1}
                 startDecorator={<TabletAndroidIcon />}
-                sx={{ bgcolor: 'transparent' }}
+                sx={{
+                  bgcolor: "transparent",
+                  fontFamily: "apercu_proregular",
+                }}
               >
                 Tablets
               </Button>
               <Button
-                onClick={() => handleButtonClick('smartphones')}
+                onClick={() => handleButtonClick("smartphones")}
                 startDecorator={<PhoneIphoneIcon />}
-                sx={{ bgcolor: 'transparent' }}
+                sx={{ bgcolor: "transparent", fontFamily: "apercu_proregular" }}
               >
                 Smartphones
               </Button>
               <Button
-                onClick={() => handleButtonClick('gaming')}
+                onClick={() => handleButtonClick("gaming")}
                 startDecorator={<SportsEsportsIcon />}
-                sx={{ bgcolor: 'transparent' }}
+                sx={{ bgcolor: "transparent", fontFamily: "apercu_proregular" }}
               >
                 Gaming
               </Button>
               <Button
-                onClick={() => handleButtonClick('books')}
+                onClick={() => handleButtonClick("books")}
                 startDecorator={<LibraryBooksIcon />}
-                sx={{ bgcolor: 'transparent' }}
+                sx={{ bgcolor: "transparent", fontFamily: "apercu_proregular" }}
               >
                 Books
               </Button>
               <Button
-                onClick={() => handleButtonClick('peripherals')}
+                onClick={() => handleButtonClick("peripherals")}
                 startDecorator={<MouseIcon />}
-                sx={{ bgcolor: 'transparent' }}
+                sx={{ bgcolor: "transparent", fontFamily: "apercu_proregular" }}
               >
                 Peripherals
               </Button>
               <Button
-                onClick={() => handleButtonClick('software')}
+                onClick={() => handleButtonClick("software")}
                 startDecorator={<WysiwygIcon />}
-                sx={{ bgcolor: 'transparent' }}
+                sx={{ bgcolor: "transparent", fontFamily: "apercu_proregular" }}
               >
                 Software
               </Button>
               <Button
-                onClick={() => handleButtonClick('tv')}
+                onClick={() => handleButtonClick("tv")}
                 startDecorator={<TvIcon />}
-                sx={{ bgcolor: 'transparent' }}
+                sx={{ bgcolor: "transparent", fontFamily: "apercu_proregular" }}
               >
                 TV
               </Button>
               <Button
-                onClick={() => handleButtonClick('audio-video')}
+                onClick={() => handleButtonClick("audio-video")}
                 startDecorator={<PlayCircleIcon />}
-                sx={{ bgcolor: 'transparent' }}
+                sx={{ bgcolor: "transparent", fontFamily: "apercu_proregular" }}
               >
                 Audio-Video
               </Button>
               <Button
-                onClick={() => handleButtonClick('photo')}
+                onClick={() => handleButtonClick("photo")}
                 startDecorator={<CameraIcon />}
-                sx={{ bgcolor: 'transparent' }}
+                sx={{ bgcolor: "transparent", fontFamily: "apercu_proregular" }}
               >
                 Photo
               </Button>
             </Box>
-            <Offers />
+            <div
+              style={{
+                boxShadow: "0px 3px 4px rgba(0, 0, 0, 0.4)",
+                borderRadius: "10px",
+              }}
+            >
+              <Offers />
+            </div>
           </Box>
         </TabPanel>
         <TabPanel value={1} sx={{ p: 2 }}>
@@ -155,7 +197,7 @@ const AuxHeader = () => {
         </TabPanel>
       </Tabs>
     </div>
-  )
-}
+  );
+};
 
-export default AuxHeader
+export default AuxHeader;

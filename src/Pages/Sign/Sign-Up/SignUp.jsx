@@ -1,80 +1,80 @@
-import * as React from 'react'
-import Avatar from '@mui/material/Avatar'
-import Button from '@mui/material/Button'
-import CssBaseline from '@mui/material/CssBaseline'
-import TextField from '@mui/material/TextField'
-import Link from '@mui/material/Link'
-import Grid from '@mui/material/Grid'
-import Box from '@mui/material/Box'
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
-import Typography from '@mui/material/Typography'
-import Container from '@mui/material/Container'
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
 
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import db, { auth } from '../../../database/firebase'
-import { updateProfile } from 'firebase/auth'
-import { onAuthStateChanged } from 'firebase/auth'
-import { ref, set } from 'firebase/database'
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import db, { auth } from "../../../database/firebase";
+import { updateProfile } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
+import { ref, set } from "firebase/database";
 
 export default function SignUp() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const onSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user
+        const user = userCredential.user;
 
         // Add firstName, lastName to user profile
         updateProfile(user, {
           displayName: `${firstName} ${lastName}`,
         })
           .then(() => {
-            console.log('User created with display name:', user.displayName)
+            console.log("User created with display name:", user.displayName);
 
             // Add uid to users node
             onAuthStateChanged(auth, (user) => {
               if (user) {
-                const usersRef = ref(db, 'users/' + user.uid)
+                const usersRef = ref(db, "users/" + user.uid);
                 set(usersRef, {
                   favorites: true,
                   cart: true,
                   myOrders: true,
                 })
                   .then(() => {
-                    console.log(`User ${user.uid} added to 'users' node`)
+                    console.log(`User ${user.uid} added to 'users' node`);
                   })
                   .catch((error) => {
                     console.error(
                       `Error adding user ${user.uid} to 'users' node: ${error}`
-                    )
-                  })
+                    );
+                  });
               }
-            })
+            });
             // go to homepage after signup
-            navigate('/')
+            navigate("/");
           })
           .catch((error) => {
-            console.log('Error updating user profile:', error.message)
-          })
+            console.log("Error updating user profile:", error.message);
+          });
 
-        console.log(user)
+        console.log(user);
       })
       .catch((error) => {
-        const errorCode = error.code
-        const errorMessage = error.message
-        console.log(errorCode, errorMessage)
-      })
-  }
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -82,15 +82,19 @@ export default function SignUp() {
       <Box
         sx={{
           marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: '#1B1B1B' }}>
+        <Avatar sx={{ m: 1, bgcolor: "#3F72AF" }}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography
+          component="h1"
+          variant="h5"
+          sx={{ fontFamily: "apercu_proregular", fontWeight: "bold" }}
+        >
           Sign up
         </Typography>
         <Box component="form" noValidate sx={{ mt: 3 }}>
@@ -150,7 +154,16 @@ export default function SignUp() {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2, bgcolor: '#1B1B1B' }}
+            sx={{
+              mt: 3,
+              mb: 2,
+
+              fontFamily: "apercu_proregular",
+              bgcolor: "#3F72AF",
+              "&:hover": {
+                backgroundColor: "#112D4E", // Change to the desired hover color
+              },
+            }}
             onClick={onSubmit}
           >
             Sign Up
@@ -165,5 +178,5 @@ export default function SignUp() {
         </Box>
       </Box>
     </Container>
-  )
+  );
 }

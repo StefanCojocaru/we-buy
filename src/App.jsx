@@ -1,34 +1,35 @@
-import React from 'react'
-import { Routes, Route, useParams } from 'react-router-dom'
+import React from "react";
+import { Routes, Route, useParams } from "react-router-dom";
 
-import Home from './Pages/Home/Home.jsx'
-import Layout from './Pages/shared/Layout.jsx'
-import ProductList from './Pages/Product-Page/ProductList.jsx'
-import MyAccount from './Pages/My-Account/MyAccount.jsx'
-import Favorites from './Pages/Favorites/Favorites.jsx'
-import Cart from './Pages/Cart/Cart.jsx'
-import ProductPage from './Pages/Product-Page/ProductPage.jsx'
-import SearchResult from './Pages/Search/SearchResult.jsx'
+import Home from "./Pages/Home/Home.jsx";
+import Layout from "./Pages/shared/Layout.jsx";
+import ProductList from "./Pages/Product-Page/ProductList.jsx";
+import MyAccount from "./Pages/My-Account/MyAccount.jsx";
+import Favorites from "./Pages/Favorites/Favorites.jsx";
+import Cart from "./Pages/Cart/Cart.jsx";
+import ProductPage from "./Pages/Product-Page/ProductPage.jsx";
+import SearchResult from "./Pages/Search/SearchResult.jsx";
 
-import './style/style.css'
+import "./style/style.css";
+import "./font/stylesheet.css";
 
-import SignIn from './Pages/Sign/Sign-In/SignIn.jsx'
-import SignUp from './Pages/Sign/Sign-Up/SignUp.jsx'
+import SignIn from "./Pages/Sign/Sign-In/SignIn.jsx";
+import SignUp from "./Pages/Sign/Sign-Up/SignUp.jsx";
 
-import SecondaryLayout from './Pages/shared/SecondaryLayout.jsx'
-import { SnackbarProvider } from 'notistack'
+import SecondaryLayout from "./Pages/shared/SecondaryLayout.jsx";
+import { SnackbarProvider } from "notistack";
 
 const App = () => {
   // get category from URL and pass it to <ProductList />
   const ProductsWithCategory = () => {
-    const { category } = useParams()
-    return <ProductList category={category} />
-  }
+    const { category } = useParams();
+    return <ProductList category={category} />;
+  };
   const SearchWithValue = () => {
-    const { searchValue } = useParams()
-    console.log(searchValue)
-    return <SearchResult searchValue={searchValue} />
-  }
+    const { searchValue } = useParams();
+    console.log(searchValue);
+    return <SearchResult searchValue={searchValue} />;
+  };
 
   return (
     <div>
@@ -61,7 +62,7 @@ const App = () => {
         </Routes>
       </SnackbarProvider>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

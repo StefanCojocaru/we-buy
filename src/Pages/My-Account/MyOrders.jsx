@@ -73,7 +73,7 @@ const MyOrders = () => {
           <Sheet
             variant="outlined"
             sx={{
-              maxWidth: 1200,
+              width: "1200px",
               borderRadius: "md",
               p: 3,
               boxShadow: "lg",
@@ -118,10 +118,13 @@ const MyOrders = () => {
               Placed on: {selectedOrder.orderDate}
             </Typography>
             <Box
+              id="custom-scrollbar"
               sx={{
                 display: "flex",
                 overflowX: "auto",
-                gap: 2,
+                overflowY: "hidden",
+                gap: "8px",
+                paddingBottom: 2,
               }}
             >
               {Object.values(selectedOrder.orderItems).map((item) => (

@@ -1,38 +1,36 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
-import Box from '@mui/joy/Box'
-import Products from './Products'
-import db from '../../database/firebase'
+import React from "react";
+import { useState, useEffect } from "react";
+import Box from "@mui/joy/Box";
+import Products from "./Products";
+import db from "../../database/firebase";
 
-import { ref, onValue } from 'firebase/database'
-import Divider from '@mui/material/Divider'
+import { ref, onValue } from "firebase/database";
+import Divider from "@mui/material/Divider";
 
 const ProductList = ({ category }) => {
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    const dbProducts = ref(db, `products/${category}`)
+    const dbProducts = ref(db, `products/${category}`);
     onValue(dbProducts, (snapshot) => {
-      const products = snapshot.val()
-      setData(Object.values(products))
-    })
-  }, [category])
+      const products = snapshot.val();
+      setData(Object.values(products));
+    });
+  }, [category]);
 
   return (
     <div
       style={{
-        marginLeft: '10rem',
-        marginRight: '10rem',
-        paddingBottom: '11.5rem',
+        width: "1200px",
       }}
     >
       <h2>{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
-      <Divider/>
+      <Divider />
       <Box
         sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
+          display: "grid",
+          gridTemplateColumns: "repeat(4, 1fr)",
+          gap: "8px",
         }}
       >
         {data.map((item) => (
@@ -40,7 +38,7 @@ const ProductList = ({ category }) => {
         ))}
       </Box>
     </div>
-  )
-}
+  );
+};
 
-export default ProductList
+export default ProductList;

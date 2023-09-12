@@ -1,64 +1,81 @@
-import React from 'react'
-import Box from '@mui/joy/Box'
-import Typography from '@mui/joy/Typography'
-import Link from '@mui/joy/Link'
-import Divider from '@mui/material/Divider'
-import '../../../style/style.css'
+import React from "react";
+import Box from "@mui/joy/Box";
+import Typography from "@mui/joy/Typography";
+import Link from "@mui/joy/Link";
+import Divider from "@mui/material/Divider";
+import "../../../style/style.css";
 
 const Footer = () => {
   return (
     <>
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          backgroundColor: 'black',
-          width: '100%',
-          marginTop: 1,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          backgroundColor: "#112D4E",
+          width: "100%",
+
+          marginTop: 3,
           paddingTop: 2,
           paddingBottom: 2,
-          position: 'absolute',
-          bottom: 0,
         }}
       >
         <Box
           sx={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'space-evenly',
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-evenly",
             marginBottom: 3,
-            alignItems: 'center',
+            alignItems: "center",
           }}
         >
-          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Box sx={{ display: "flex", flexDirection: "column" }}>
             <Link
               sx={{
-                textDecoration: 'none',
-                '&:hover': { textDecoration: 'none' },
+                textDecoration: "none",
+                "&:hover": { textDecoration: "none" },
               }}
             >
-              <Typography sx={{ color: 'white', fontWeight: 'bold' }}>
+              <Typography
+                sx={{
+                  color: "white",
+                  fontWeight: "bold",
+                  fontFamily: "apercu_proregular",
+                }}
+              >
                 About us
               </Typography>
             </Link>
             <Link
               sx={{
-                textDecoration: 'none',
-                '&:hover': { textDecoration: 'none' },
+                textDecoration: "none",
+                "&:hover": { textDecoration: "none" },
               }}
             >
-              <Typography sx={{ color: 'white', fontWeight: 'bold' }}>
+              <Typography
+                sx={{
+                  color: "white",
+                  fontWeight: "bold",
+                  fontFamily: "apercu_proregular",
+                }}
+              >
                 Contact
               </Typography>
             </Link>
             <Link
               sx={{
-                textDecoration: 'none',
-                '&:hover': { textDecoration: 'none' },
+                textDecoration: "none",
+                "&:hover": { textDecoration: "none" },
               }}
             >
-              <Typography sx={{ color: 'white', fontWeight: 'bold' }}>
+              <Typography
+                sx={{
+                  color: "white",
+                  fontWeight: "bold",
+                  fontFamily: "apercu_proregular",
+                }}
+              >
                 Customer Service
               </Typography>
             </Link>
@@ -66,36 +83,54 @@ const Footer = () => {
           <Divider
             orientation="vertical"
             flexItem
-            sx={{ backgroundColor: 'white' }}
+            sx={{ backgroundColor: "white" }}
           />
-          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Box sx={{ display: "flex", flexDirection: "column" }}>
             <Link
               sx={{
-                textDecoration: 'none',
-                '&:hover': { textDecoration: 'none' },
+                textDecoration: "none",
+                "&:hover": { textDecoration: "none" },
               }}
             >
-              <Typography sx={{ color: 'white', fontWeight: 'bold' }}>
+              <Typography
+                sx={{
+                  color: "white",
+                  fontWeight: "bold",
+                  fontFamily: "apercu_proregular",
+                }}
+              >
                 Newsletter Sign Up
               </Typography>
             </Link>
             <Link
               sx={{
-                textDecoration: 'none',
-                '&:hover': { textDecoration: 'none' },
+                textDecoration: "none",
+                "&:hover": { textDecoration: "none" },
               }}
             >
-              <Typography sx={{ color: 'white', fontWeight: 'bold' }}>
+              <Typography
+                sx={{
+                  color: "white",
+                  fontWeight: "bold",
+                  fontFamily: "apercu_proregular",
+                }}
+              >
                 Privacy Policy
               </Typography>
             </Link>
             <Link
               sx={{
-                textDecoration: 'none',
-                '&:hover': { textDecoration: 'none' },
+                textDecoration: "none",
+                "&:hover": { textDecoration: "none" },
               }}
             >
-              <Typography sx={{ color: 'white', fontWeight: 'bold' }}>
+              <Typography
+                sx={{
+                  color: "white",
+                  fontWeight: "bold",
+                  fontFamily: "apercu_proregular",
+                }}
+              >
                 Terms and Conditions
               </Typography>
             </Link>
@@ -103,17 +138,22 @@ const Footer = () => {
           <Divider
             orientation="vertical"
             flexItem
-            sx={{ backgroundColor: 'white' }}
+            sx={{ backgroundColor: "white" }}
           />
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
             }}
           >
             <Typography
-              sx={{ color: 'white', fontWeight: 'bold', marginBottom: 1 }}
+              sx={{
+                color: "white",
+                fontWeight: "bold",
+                marginBottom: 1,
+                fontFamily: "apercu_proregular",
+              }}
             >
               Social Media
             </Typography>
@@ -135,17 +175,22 @@ const Footer = () => {
           <Divider
             orientation="vertical"
             flexItem
-            sx={{ backgroundColor: 'white' }}
+            sx={{ backgroundColor: "white" }}
           />
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
             }}
           >
             <Typography
-              sx={{ color: 'white', fontWeight: 'bold', marginBottom: 1 }}
+              sx={{
+                color: "white",
+                fontWeight: "bold",
+                marginBottom: 1,
+                fontFamily: "apercu_proregular",
+              }}
             >
               Payment Methods
             </Typography>
@@ -154,31 +199,31 @@ const Footer = () => {
                 <div className="paymentCard">
                   <i
                     className="fa-brands fa-cc-visa"
-                    style={{ color: '#000000' }}
+                    style={{ color: "#112D4E" }}
                   ></i>
                 </div>
                 <div className="paymentCard">
                   <i
                     className="fa-brands fa-cc-mastercard"
-                    style={{ color: '#000000' }}
+                    style={{ color: "#112D4E" }}
                   ></i>
                 </div>
                 <div className="paymentCard">
                   <i
                     className="fa-brands fa-apple-pay"
-                    style={{ color: '#000000' }}
+                    style={{ color: "#112D4E" }}
                   ></i>
                 </div>
                 <div className="paymentCard">
                   <i
                     className="fa-brands fa-google-pay"
-                    style={{ color: '#000000' }}
+                    style={{ color: "#112D4E" }}
                   ></i>
                 </div>
                 <div className="paymentCard">
                   <i
                     className="fa-solid fa-money-bill-transfer"
-                    style={{ color: '#000000' }}
+                    style={{ color: "#112D4E" }}
                   ></i>
                 </div>
               </div>
@@ -186,13 +231,19 @@ const Footer = () => {
           </Box>
         </Box>
         <Typography
-          sx={{ color: 'white', fontWeight: 'lg', fontStyle: 'italic' }}
+          sx={{
+            color: "white",
+            fontWeight: "lg",
+            fontStyle: "italic",
+            fontFamily: "apercu_proregular",
+            fontWeight: "normal",
+          }}
         >
           Made by Stefan Cojocaru
         </Typography>
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

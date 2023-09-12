@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react'
-import Products from '../Product-Page/Products'
-import db from '../../database/firebase'
-import { ref, onValue, get, set } from 'firebase/database'
-import Box from '@mui/joy/Box'
+import React, { useState, useEffect } from "react";
+import Products from "../Product-Page/Products";
+import db from "../../database/firebase";
+import { ref, onValue, get, set } from "firebase/database";
+import Box from "@mui/joy/Box";
 
 const SearchResult = ({ searchValue }) => {
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const dbRef = ref(db, 'products')
+    const dbRef = ref(db, "products");
     onValue(dbRef, (snapshot) => {
-      const categories = snapshot.val()
-      const matchingProducts = []
+      const categories = snapshot.val();
+      const matchingProducts = [];
       for (const categoryKey in categories) {
-        const category = categories[categoryKey]
+        const category = categories[categoryKey];
         for (const productKey in category) {
-          const product = category[productKey]
+          const product = category[productKey];
           if (
             product &&
             (product.title?.toLowerCase().includes(searchValue.toLowerCase()) ||
@@ -30,24 +30,22 @@ const SearchResult = ({ searchValue }) => {
                 ?.toLowerCase()
                 .includes(searchValue.toLowerCase()))
           ) {
-            matchingProducts.push(product)
+            matchingProducts.push(product);
           }
         }
       }
-      setProducts(matchingProducts)
-    })
-  }, [searchValue])
+      setProducts(matchingProducts);
+    });
+  }, [searchValue]);
 
   useEffect(() => {
-    console.log(products)
-  }, [products])
+    console.log(products);
+  }, [products]);
 
   return (
     <div
       style={{
-        marginLeft: '10rem',
-        marginRight: '10rem',
-        paddingBottom: '11.5rem',
+        width: "1200px",
       }}
     >
       {products.length ? (
@@ -55,9 +53,9 @@ const SearchResult = ({ searchValue }) => {
           <h2>Search results for "{searchValue}"</h2>
           <Box
             sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: "8px",
             }}
           >
             {products.map((product) => (
@@ -69,7 +67,7 @@ const SearchResult = ({ searchValue }) => {
         <h2>We couldn't find anything about "{searchValue}"</h2>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default SearchResult
+export default SearchResult;

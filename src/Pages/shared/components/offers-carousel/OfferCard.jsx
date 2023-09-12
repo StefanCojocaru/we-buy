@@ -1,16 +1,16 @@
-import * as React from 'react'
-import Box from '@mui/joy/Box'
-import Card from '@mui/joy/Card'
-import CardCover from '@mui/joy/CardCover'
+import * as React from "react";
+import Box from "@mui/joy/Box";
+import Card from "@mui/joy/Card";
+import CardCover from "@mui/joy/CardCover";
 
 export default function OfferCard({ imageOffer }) {
   return (
     <Box
       component="ul"
       sx={{
-        display: 'flex',
+        display: "flex",
         gap: 2,
-        flexWrap: 'wrap',
+        flexWrap: "wrap",
         p: 0,
         m: 0,
       }}
@@ -20,13 +20,18 @@ export default function OfferCard({ imageOffer }) {
         sx={{
           flexGrow: 1,
           height: 400,
-          width: 200,
+          width: 160,
         }}
       >
         <CardCover>
-          <img src={imageOffer} loading="lazy" alt="" />
+          <img
+            src={imageOffer}
+            loading="lazy"
+            alt=""
+            style={{ objectFit: "contain" }}
+          />
         </CardCover>
       </Card>
     </Box>
-  )
+  );
 }

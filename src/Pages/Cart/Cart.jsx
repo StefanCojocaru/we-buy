@@ -1,59 +1,59 @@
-import React from 'react'
+import React from "react";
 
-import List from '@mui/joy/List'
-import ListItem from '@mui/joy/ListItem'
-import Typography from '@mui/joy/Typography'
-import Box from '@mui/joy/Box'
-import ClearIcon from '@mui/icons-material/Clear'
-import Button from '@mui/joy/Button'
-import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout'
+import List from "@mui/joy/List";
+import ListItem from "@mui/joy/ListItem";
+import Typography from "@mui/joy/Typography";
+import Box from "@mui/joy/Box";
+import ClearIcon from "@mui/icons-material/Clear";
+import Button from "@mui/joy/Button";
+import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 
-import Products from '../Product-Page/Products'
-import { useState, useEffect } from 'react'
-import { ref, set, onValue, remove, push } from 'firebase/database'
-import db, { auth } from '../../database/firebase'
+import Products from "../Product-Page/Products";
+import { useState, useEffect } from "react";
+import { ref, set, onValue, remove, push } from "firebase/database";
+import db, { auth } from "../../database/firebase";
 
 const Cart = () => {
-  const [cart, setCart] = useState([])
-  const user = auth.currentUser
-  const [isLoading, setIsLoading] = useState(false)
+  const [cart, setCart] = useState([]);
+  const user = auth.currentUser;
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (user) {
-      const dbCart = ref(db, `users/${user.uid}/cart`)
+      const dbCart = ref(db, `users/${user.uid}/cart`);
       onValue(dbCart, (snapshot) => {
-        const cart = []
+        const cart = [];
         snapshot.forEach((childSnapshot) => {
-          const cartItem = childSnapshot.val()
-          cart.push(cartItem)
-        })
-        setCart(cart)
-      })
+          const cartItem = childSnapshot.val();
+          cart.push(cartItem);
+        });
+        setCart(cart);
+      });
     }
-  }, [user])
+  }, [user]);
 
   const totalPrice = cart
     .reduce((total, item) => total + item.price, 0)
-    .toFixed(2)
+    .toFixed(2);
 
   const clearAll = () => {
     if (user) {
-      const dbCart = ref(db, `users/${user.uid}/cart`)
-      remove(dbCart)
+      const dbCart = ref(db, `users/${user.uid}/cart`);
+      remove(dbCart);
     }
-    setCart([])
-  }
+    setCart([]);
+  };
 
-  const currentDate = new Date()
+  const currentDate = new Date();
   const orderDate = `${currentDate.getFullYear()}-${
     currentDate.getMonth() + 1
-  }-${currentDate.getDate()}`
+  }-${currentDate.getDate()}`;
 
   // REDO THIS
   const placeOrder = () => {
     if (user) {
-      const dbOrders = ref(db, `users/${user.uid}/myOrders`)
-      const newOrderRef = push(dbOrders)
+      const dbOrders = ref(db, `users/${user.uid}/myOrders`);
+      const newOrderRef = push(dbOrders);
 
       // const orderItems = cart.map((item) => ({
       //   ...item,
@@ -62,73 +62,97 @@ const Cart = () => {
       const orderItems = cart.reduce((acc, item) => {
         acc[item.id] = {
           ...item,
-        }
-        return acc
-      }, {})
+        };
+        return acc;
+      }, {});
 
-      const newOrderKey = newOrderRef.key
-      const newOrderPath = `users/${user.uid}/myOrders/${newOrderKey}`
+      const newOrderKey = newOrderRef.key;
+      const newOrderPath = `users/${user.uid}/myOrders/${newOrderKey}`;
 
       set(ref(db, newOrderPath), {
         orderItems,
         totalPrice,
         orderDate: orderDate,
-      })
+      });
 
-      clearAll()
+      clearAll();
     }
-  }
+  };
 
   return (
-    <Box
-      textAlign="center"
-      marginTop="2rem"
-      marginLeft="10rem"
-      marginRight="10rem"
-      paddingBottom="11.5rem"
-    >
+    <Box sx={{ marginTop: 2, width: "1200px" }}>
       <Typography
         id="basic-list-demo"
         level="body3"
         textTransform="uppercase"
-        fontWeight="lg"
+        fontWeight="bold"
+        textAlign="center"
+        fontSize="lg"
       >
         Cart
       </Typography>
       <Box display="inline-block">
-        <List aria-labelledby="basic-list-demo">
-          <Box
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: "repeat(4, 1fr)",
+            gap: "8px",
+            marginBottom: 2,
+          }}
+        >
+          {cart.map((item) => (
+            <ListItem key={item.id}>
+              <Products item={item} />
+            </ListItem>
+          ))}
+        </Box>
+
+        <h3 style={{ textAlign: "center" }}>Total Price: {totalPrice}$</h3>
+        <Box
+          textAlign="center"
+          sx={{ display: "flex", justifyContent: "center", gap: "8px" }}
+        >
+          <Button
+            startDecorator={<ClearIcon />}
             sx={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
+              backgroundColor: "#3F72AF",
+
+              "&:hover": {
+                backgroundColor: "#112D4E",
+              },
+              "&:hover svg": {
+                // Change the color of the favorite icon when the button is hovered
+                fill: "#BB2525", // Change to your desired color
+              },
+              width: 160,
             }}
+            onClick={clearAll}
           >
-            {cart.map((item) => (
-              <ListItem key={item.id}>
-                <Products item={item} />
-              </ListItem>
-            ))}
-          </Box>
-        </List>
-        <h3>Total Price: {totalPrice}$</h3>
-        <Button
-          startDecorator={<ClearIcon />}
-          sx={{ backgroundColor: '#1B1B1B', marginRight: '1rem' }}
-          onClick={clearAll}
-        >
-          Clear All
-        </Button>
-        <Button
-          startDecorator={<ShoppingCartCheckoutIcon />}
-          sx={{ backgroundColor: '#1B1B1B' }}
-          onClick={placeOrder}
-        >
-          Place Order
-        </Button>
+            Clear All
+          </Button>
+          <Button
+            startDecorator={<ShoppingCartCheckoutIcon />}
+            sx={{
+              backgroundColor: "#3F72AF",
+
+              "&:hover": {
+                backgroundColor: "#112D4E", // Change to the desired hover color
+              },
+
+              "&:hover svg": {
+                // Change the color of the favorite icon when the button is hovered
+                fill: "#8EAC50", // Change to your desired color
+              },
+              width: 160,
+            }}
+            onClick={placeOrder}
+          >
+            Place Order
+          </Button>
+        </Box>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;

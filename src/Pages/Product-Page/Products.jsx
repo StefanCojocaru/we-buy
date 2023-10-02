@@ -7,44 +7,72 @@ import IconButton from "@mui/joy/IconButton";
 import Typography from "@mui/joy/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useNavigate } from "react-router-dom";
 
 import { SnackbarProvider, enqueueSnackbar, useSnackbar } from "notistack";
 import db from "../../database/firebase";
-import { ref, get, set } from "firebase/database";
+import { ref, get, set, update } from "firebase/database";
 import { Link } from "react-router-dom";
 import { auth } from "../../database/firebase";
 
 const Products = ({ item }) => {
+  const navigate = useNavigate();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const user = auth.currentUser;
 
   const handleFavorites = async (item) => {
     if (user) {
-      const userId = user.uid;
-      const userRef = ref(db, `users/${userId}/favorites/${item.id}`);
-      const snapshot = await get(userRef);
-
-      if (snapshot.exists()) {
-        enqueueSnackbar("Item already in favorites", { variant: "warning" });
+      if (item.stock === 0) {
+        enqueueSnackbar("Product is out of stock", { variant: "warning" });
       } else {
-        set(userRef, item);
-        enqueueSnackbar("Item added to favorites", { variant: "success" });
+        const userId = user.uid;
+        const userRef = ref(db, `users/${userId}/favorites/${item.id}`);
+        const snapshot = await get(userRef);
+
+        if (snapshot.exists()) {
+          enqueueSnackbar("Item already in favorites", { variant: "warning" });
+        } else {
+          set(userRef, item);
+          enqueueSnackbar("Item added to favorites", { variant: "success" });
+        }
       }
+    } else {
+      navigate("/myaccount/signin");
+      enqueueSnackbar("You must be logged in to perform this type of action", {
+        variant: "warning",
+      });
     }
   };
 
   const handleCart = async (item) => {
     if (user) {
-      const userId = user.uid;
-      const userRef = ref(db, `users/${userId}/cart/${item.id}`);
-      const snapshot = await get(userRef);
-
-      if (snapshot.exists()) {
-        enqueueSnackbar("Item already in cart", { variant: "warning" });
+      if (item.stock === 0) {
+        enqueueSnackbar("Product is out of stock", { variant: "warning" });
       } else {
-        set(userRef, item);
-        enqueueSnackbar("Item added to cart", { variant: "success" });
+        const userId = user.uid;
+        const userRef = ref(db, `users/${userId}/cart/${item.id}`);
+        const snapshot = await get(userRef);
+
+        if (snapshot.exists()) {
+          // Item already exists in the cart, update the quantity
+          const existingItem = snapshot.val();
+          const updatedQuantity = existingItem.quantity + 1;
+
+          update(userRef, { quantity: updatedQuantity });
+          enqueueSnackbar("Item quantity updated in cart", {
+            variant: "success",
+          });
+        } else {
+          // Item doesn't exist in the cart, add it with quantity set to 1
+          set(userRef, { ...item, quantity: 1 }); // Initialize quantity to 1
+          enqueueSnackbar("Item added to cart", { variant: "success" });
+        }
       }
+    } else {
+      navigate("/myaccount/signin");
+      enqueueSnackbar("You must be logged in to perform this type of action", {
+        variant: "warning",
+      });
     }
   };
 
@@ -57,7 +85,6 @@ const Products = ({ item }) => {
             variant="outlined"
             sx={{
               marginTop: 2,
-
               minWidth: 260,
               maxWidth: 260,
               display: "flex",
@@ -69,6 +96,7 @@ const Products = ({ item }) => {
               "&:hover": {
                 transform: "scale(1.04)", // Scale up by 5% on hover (adjust as needed)
               },
+              opacity: item.stock === 0 ? 0.5 : 1,
             }}
           >
             <Link

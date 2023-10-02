@@ -54,7 +54,6 @@ const Header = () => {
     }
   }, [user]);
   const numFavorites = favorites.length;
-  console.log(numFavorites);
 
   const [cart, setCart] = useState([]);
   useEffect(() => {
@@ -71,7 +70,6 @@ const Header = () => {
     }
   }, [user]);
   const numCart = cart.length;
-  console.log(numCart);
 
   const [opacity, setOpacity] = useState(1);
   const [isHovered, setIsHovered] = useState(false);
@@ -112,7 +110,7 @@ const Header = () => {
       sx={{
         width: "1200px",
         // backgroundColor: "rgba(255, 255, 255, 1)",
-        backgroundColor: "rgb(219, 226, 239,1)",
+        backgroundColor: "rgba(219, 226, 239,1)",
         borderTop: "1px solid rgba(128, 128, 128, 0.3)",
         borderBottom: "1px solid rgba(128, 128, 128, 0.3)",
         borderRight: "1px solid rgba(128, 128, 128, 0.3)",
@@ -171,7 +169,7 @@ const Header = () => {
       <Link to={user ? "/favorites" : "/myaccount/signin"}>
         <Button
           startDecorator={
-            <Badge badgeContent={numFavorites} size="sm" color="primary">
+            <Badge badgeContent={numFavorites} size="sm">
               <FavoriteIcon />
             </Badge>
           }
@@ -190,7 +188,7 @@ const Header = () => {
       <Link to={user ? "/cart" : "/myaccount/signin"}>
         <Button
           startDecorator={
-            <Badge badgeContent={numCart} size="sm" color="primary">
+            <Badge badgeContent={numCart} size="sm">
               <ShoppingCartIcon />
             </Badge>
           }

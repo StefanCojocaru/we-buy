@@ -43,9 +43,9 @@ const MyAccount = () => {
       }}
     >
       <div>
-        <h2>Welcome {user.displayName}</h2>
+        <h2>Welcome {user.displayName},</h2>
       </div>
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+      <Box sx={{ display: "flex", gap: "8px", width: "1200px" }}>
         <List
           sx={{
             width: "100%",
@@ -84,9 +84,9 @@ const MyAccount = () => {
         </List>
 
         {selectedItem === "myOrders" && (
-          <Paper elevation={8} sx={{ width: "90%" }}>
-            <MyOrders />
-          </Paper>
+          // <Paper elevation={8} sx={{ width: "90%" }}>
+          <MyOrders />
+          // </Paper>
         )}
         {selectedItem === "sellProduct" && (
           <Paper elevation={8} sx={{ width: "90%" }}>

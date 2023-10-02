@@ -7,10 +7,19 @@ import Box from "@mui/joy/Box";
 import ClearIcon from "@mui/icons-material/Clear";
 import Button from "@mui/joy/Button";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
+import Divider from "@mui/material/Divider";
 
 import Products from "../Product-Page/Products";
 import { useState, useEffect } from "react";
-import { ref, set, onValue, remove, push } from "firebase/database";
+import {
+  ref,
+  set,
+  onValue,
+  remove,
+  push,
+  get,
+  update,
+} from "firebase/database";
 import db, { auth } from "../../database/firebase";
 
 const Cart = () => {
@@ -66,6 +75,20 @@ const Cart = () => {
         return acc;
       }, {});
 
+      // ADD QUANTITY FUNCTION
+
+      cart.forEach((item) => {
+        const productRef = ref(db, `products/${item.category}/${item.id}`);
+        get(productRef).then((snapshot) => {
+          const currentStock = snapshot.val().stock;
+          if (currentStock > 0) {
+            update(productRef, {
+              stock: currentStock - 1,
+            });
+          }
+        });
+      });
+
       const newOrderKey = newOrderRef.key;
       const newOrderPath = `users/${user.uid}/myOrders/${newOrderKey}`;
 
@@ -82,74 +105,89 @@ const Cart = () => {
   return (
     <Box sx={{ marginTop: 2, width: "1200px" }}>
       <Typography
-        id="basic-list-demo"
-        level="body3"
-        textTransform="uppercase"
-        fontWeight="bold"
-        textAlign="center"
-        fontSize="lg"
+        sx={{
+          fontFamily: "apercu_proregular",
+          fontWeight: "bold",
+          fontSize: "24px",
+          textAlign: "center",
+          marginBottom: 1,
+        }}
       >
-        Cart
+        CART
       </Typography>
-      <Box display="inline-block">
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "repeat(4, 1fr)",
-            gap: "8px",
-            marginBottom: 2,
-          }}
-        >
-          {cart.map((item) => (
-            <ListItem key={item.id}>
-              <Products item={item} />
-            </ListItem>
-          ))}
-        </Box>
+      <Divider />
+      <Box>
+        {cart.length > 0 ? (
+          <Box>
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: "repeat(4, 1fr)",
+                gap: "8px",
+                marginBottom: 2,
+              }}
+            >
+              {cart.map((item) => (
+                <ListItem
+                  key={item.id}
+                  sx={{ display: "flex", flexDirection: "column", gap: "8px" }}
+                >
+                  <Products item={item} />
+                  <div>test</div>
+                </ListItem>
+              ))}
+            </Box>
+            <h3 style={{ textAlign: "center" }}>Total Price: {totalPrice}$</h3>
+            <Box
+              textAlign="center"
+              sx={{ display: "flex", justifyContent: "center", gap: "8px" }}
+            >
+              <Button
+                startDecorator={<ClearIcon />}
+                sx={{
+                  backgroundColor: "#3F72AF",
 
-        <h3 style={{ textAlign: "center" }}>Total Price: {totalPrice}$</h3>
-        <Box
-          textAlign="center"
-          sx={{ display: "flex", justifyContent: "center", gap: "8px" }}
-        >
-          <Button
-            startDecorator={<ClearIcon />}
-            sx={{
-              backgroundColor: "#3F72AF",
+                  "&:hover": {
+                    backgroundColor: "#112D4E",
+                  },
+                  "&:hover svg": {
+                    // Change the color of the favorite icon when the button is hovered
+                    fill: "#BB2525", // Change to your desired color
+                  },
+                  width: 160,
+                }}
+                onClick={clearAll}
+              >
+                Clear All
+              </Button>
+              <Button
+                startDecorator={<ShoppingCartCheckoutIcon />}
+                sx={{
+                  backgroundColor: "#3F72AF",
 
-              "&:hover": {
-                backgroundColor: "#112D4E",
-              },
-              "&:hover svg": {
-                // Change the color of the favorite icon when the button is hovered
-                fill: "#BB2525", // Change to your desired color
-              },
-              width: 160,
-            }}
-            onClick={clearAll}
+                  "&:hover": {
+                    backgroundColor: "#112D4E", // Change to the desired hover color
+                  },
+
+                  "&:hover svg": {
+                    // Change the color of the favorite icon when the button is hovered
+                    fill: "#8EAC50", // Change to your desired color
+                  },
+                  width: 160,
+                }}
+                onClick={placeOrder}
+              >
+                Place Order
+              </Button>
+            </Box>
+          </Box>
+        ) : (
+          <Typography
+            sx={{ textAlign: "center", marginTop: 2, fontStyle: "italic" }}
           >
-            Clear All
-          </Button>
-          <Button
-            startDecorator={<ShoppingCartCheckoutIcon />}
-            sx={{
-              backgroundColor: "#3F72AF",
-
-              "&:hover": {
-                backgroundColor: "#112D4E", // Change to the desired hover color
-              },
-
-              "&:hover svg": {
-                // Change the color of the favorite icon when the button is hovered
-                fill: "#8EAC50", // Change to your desired color
-              },
-              width: 160,
-            }}
-            onClick={placeOrder}
-          >
-            Place Order
-          </Button>
-        </Box>
+            Your cart is empty...
+          </Typography>
+        )}
       </Box>
     </Box>
   );

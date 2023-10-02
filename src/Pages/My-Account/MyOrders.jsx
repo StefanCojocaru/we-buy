@@ -17,6 +17,19 @@ import Sheet from "@mui/joy/Sheet";
 import Grow from "@mui/material/Grow";
 import Products from "../Product-Page/Products";
 
+import {
+  Chart as ChartJS,
+  BarElement,
+  CategoryScale,
+  LinearScale,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+import { Bar } from "react-chartjs-2";
+
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
+
 const MyOrders = () => {
   const user = auth.currentUser;
   const [orders, setOrders] = useState([]);
@@ -39,25 +52,208 @@ const MyOrders = () => {
     }
   }, [user]);
 
+  const [selectedYear, setSelectedYear] = useState("2023");
+  const [monthlyTotalSales, setMonthlyTotalSales] = useState({});
+  const [allMonths, setAllMonths] = useState([]);
+
+  // Function to filter orders by the selected year
+  const filterOrdersByYear = (selectedYear) => {
+    return orders.filter((order) => {
+      const orderDate = new Date(order.orderDate);
+      return orderDate.getFullYear() === selectedYear;
+    });
+  };
+
+  useEffect(() => {
+    if (selectedYear) {
+      const filteredOrders = filterOrdersByYear(parseInt(selectedYear));
+
+      // Reset the monthlyTotalSales object
+      const newMonthlyTotalSales = {};
+
+      // Initialize the months
+      const newAllMonths = Array.from({ length: 12 }, (_, i) => {
+        const date = new Date();
+        date.setMonth(i);
+        return date.toLocaleString("default", { month: "long" });
+      });
+
+      // Calculate monthly total sales for the selected year
+      filteredOrders.forEach((order) => {
+        const orderDate = new Date(order.orderDate);
+        const month = orderDate.toLocaleString("default", { month: "long" });
+
+        if (!newMonthlyTotalSales[month]) {
+          newMonthlyTotalSales[month] = 0;
+        }
+
+        newMonthlyTotalSales[month] += parseFloat(order.totalPrice);
+      });
+
+      setMonthlyTotalSales(newMonthlyTotalSales);
+      setAllMonths(newAllMonths);
+    }
+  }, [selectedYear, orders]);
+
+  const years = ["2022", "2023", "2024"];
+
+  const handleYearChange = (event) => {
+    setSelectedYear(event.target.value);
+  };
+
+  const calculateTotalPriceByYear = (selectedYear) => {
+    console.log("Selected Year:", selectedYear);
+
+    const totalPrice = orders
+      .filter((order) => {
+        const orderDate = new Date(order.orderDate);
+        console.log("Order Date:", orderDate);
+        return orderDate.getFullYear() === parseInt(selectedYear);
+      })
+      .reduce((total, order) => total + parseFloat(order.totalPrice), 0)
+      .toFixed(2);
+
+    return totalPrice;
+  };
+  const totalPriceForSelectedYear = calculateTotalPriceByYear(selectedYear);
+
+  console.log(totalPriceForSelectedYear);
+
+  const options = {
+    scales: {
+      x: {
+        beginAtZero: true,
+        ticks: {
+          color: "#fff",
+        },
+        grid: {
+          color: "rgba(255,255,255,0.6)",
+        },
+      },
+      y: {
+        beginAtZero: true,
+        ticks: {
+          color: "#fff",
+        },
+        grid: {
+          color: "rgba(255,255,255,0.6)",
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+        labels: {
+          color: "white",
+        },
+      },
+    },
+  };
+
+  const data = {
+    labels: allMonths,
+    datasets: [
+      {
+        label: "Spent",
+        data: allMonths.map((month) => monthlyTotalSales[month] || 0),
+        borderWidth: 1,
+        backgroundColor: "rgba(219, 226, 239,1)",
+      },
+    ],
+  };
+
   return (
-    <Box>
+    <Box
+      sx={{
+        backgroundColor: "rgba(219, 226, 239,1)",
+        width: "100%",
+        borderRadius: "10px",
+        boxShadow: "0px 2px 3px rgba(0, 0, 0, 0.2)",
+      }}
+    >
       <h3 style={{ display: "flex", justifyContent: "center" }}>My Orders</h3>
-      <List sx={{ listStyleType: "disc", pl: 4 }}>
-        {orders.map((order) => (
-          <>
-            <ListItemButton
-              sx={{ display: "list-item" }}
+
+      <div style={{ display: "flex", gap: "10px" }}>
+        <ol
+          className="custom-scrollbar"
+          style={{ height: "400px", overflowX: "auto", width: "300px" }}
+        >
+          {orders.map((order) => (
+            <li
               key={order.orderId}
+              style={{ marginTop: "10px", cursor: "pointer" }}
               onClick={() => setSelectedOrder(order)}
             >
-              <ListItemText
-                primary={order.orderId}
-                secondary={order.orderDate}
-              />
-            </ListItemButton>
-          </>
-        ))}
-      </List>
+              <div style={{ fontWeight: "bold" }}>{order.orderId}</div>
+              <div
+                style={{
+                  fontSize: "14px",
+                  color: "rgba(0,0,0,1)",
+                }}
+              >
+                {order.totalPrice}$
+              </div>
+              <div
+                style={{
+                  fontStyle: "italic",
+                  fontSize: "14px",
+                  color: "rgba(0,0,0,0.6)",
+                }}
+              >
+                {order.orderDate}
+              </div>
+            </li>
+          ))}
+        </ol>
+        <div
+          style={{
+            backgroundColor: "#3F72AF",
+            // backgroundColor: "lightblue",
+            marginBottom: "10px",
+            marginRight: "10px",
+            borderRadius: "10px",
+            color: "#fff",
+            padding: "10px",
+            width: "670px",
+          }}
+        >
+          <div
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              fontSize: "24px",
+            }}
+          >
+            Detailed View
+          </div>
+          <div
+            style={{
+              fontWeight: "bold",
+              fontSize: "18px",
+              marginTop: "10px",
+              marginBottom: "10px",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <div>Total spent: {totalPriceForSelectedYear}$</div>
+            <div>
+              <label>Select Year: </label>
+              <select value={selectedYear} onChange={handleYearChange}>
+                <option value="">Select a year</option>
+                {years.map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div>
+            <Bar data={data} options={options}></Bar>
+          </div>
+        </div>
+      </div>
       {selectedOrder && (
         <Modal
           aria-labelledby="modal-title"
@@ -118,7 +314,7 @@ const MyOrders = () => {
               Placed on: {selectedOrder.orderDate}
             </Typography>
             <Box
-              id="custom-scrollbar"
+              className="custom-scrollbar"
               sx={{
                 display: "flex",
                 overflowX: "auto",

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import db from "../../database/firebase";
 import { useState, useEffect } from "react";
 import { ref, onValue, get, set } from "firebase/database";
+import { useNavigate } from "react-router-dom";
 
 import Products from "./Products";
 
@@ -26,6 +27,7 @@ const ProductPage = () => {
   const [product, setProduct] = useState({});
   const [similarProducts, setSimilarProducts] = useState([]);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const navigate = useNavigate();
 
   const user = auth.currentUser;
 
@@ -44,31 +46,49 @@ const ProductPage = () => {
 
   const handleFavorites = async (item) => {
     if (user) {
-      const userId = user.uid;
-      const userRef = ref(db, `users/${userId}/favorites/${item.id}`);
-      const snapshot = await get(userRef);
-
-      if (snapshot.exists()) {
-        enqueueSnackbar("Item already in favorites", { variant: "warning" });
+      if (item.stock === 0) {
+        enqueueSnackbar("Product is out of stock", { variant: "warning" });
       } else {
-        set(userRef, item);
-        enqueueSnackbar("Item added to favorites", { variant: "success" });
+        const userId = user.uid;
+        const userRef = ref(db, `users/${userId}/favorites/${item.id}`);
+        const snapshot = await get(userRef);
+
+        if (snapshot.exists()) {
+          enqueueSnackbar("Item already in favorites", { variant: "warning" });
+        } else {
+          set(userRef, item);
+          enqueueSnackbar("Item added to favorites", { variant: "success" });
+        }
       }
+    } else {
+      navigate("/myaccount/signin");
+      enqueueSnackbar("You must be logged in to perform this type of action", {
+        variant: "warning",
+      });
     }
   };
 
   const handleCart = async (item) => {
     if (user) {
-      const userId = user.uid;
-      const userRef = ref(db, `users/${userId}/cart/${item.id}`);
-      const snapshot = await get(userRef);
-
-      if (snapshot.exists()) {
-        enqueueSnackbar("Item already in cart", { variant: "warning" });
+      if (item.stock === 0) {
+        enqueueSnackbar("Product is out of stock", { variant: "warning" });
       } else {
-        set(userRef, item);
-        enqueueSnackbar("Item added to cart", { variant: "success" });
+        const userId = user.uid;
+        const userRef = ref(db, `users/${userId}/cart/${item.id}`);
+        const snapshot = await get(userRef);
+
+        if (snapshot.exists()) {
+          enqueueSnackbar("Item already in cart", { variant: "warning" });
+        } else {
+          set(userRef, item);
+          enqueueSnackbar("Item added to cart", { variant: "success" });
+        }
       }
+    } else {
+      navigate("/myaccount/signin");
+      enqueueSnackbar("You must be logged in to perform this type of action", {
+        variant: "warning",
+      });
     }
   };
 
@@ -153,7 +173,11 @@ const ProductPage = () => {
                   sx={{ mb: 1.5, fontFamily: "apercu_proregular" }}
                   color="text.secondary"
                 >
-                  in stock
+                  {product.stock > 0 ? (
+                    <div>in stock</div>
+                  ) : (
+                    <div>Product unavailable</div>
+                  )}
                 </Typography>
                 <Box
                   sx={{
@@ -176,7 +200,7 @@ const ProductPage = () => {
                         fill: "#8EAC50", // Change to your desired color
                       },
                     }}
-                    onClick={() => handleFavorites(product)}
+                    onClick={() => handleCart(product)}
                   >
                     Add to Cart
                   </Button>
@@ -193,7 +217,7 @@ const ProductPage = () => {
                         fill: "#BB2525", // Change to your desired color
                       },
                     }}
-                    onClick={() => handleCart(product)}
+                    onClick={() => handleFavorites(product)}
                   >
                     Add to Favorites
                   </Button>
